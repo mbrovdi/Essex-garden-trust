@@ -139,9 +139,12 @@ p{
    cursor: pointer;
     margin-left: 0;
    margin-top: 30px;
-   text-decoration-line: none;
 }
 
+.btn2 a{
+    text-decoration: none;
+    color: #095219;
+}
 .hero1{
     background-color: white;;
 }
@@ -154,7 +157,7 @@ p{
 }
 
 .about-p{
-    color: #095219;
+    color: #7a7a7a;
     padding: 15px;
     font-size: 25px;
     text-align: center;
@@ -167,6 +170,24 @@ p{
     padding: 20px 60px 60px;
 }
 
+.button{
+    background-color: white;
+    color: #095219;
+    border: 2px solid #095219;
+    width: 110px;
+    height: 35px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: inline-block;
+    justify-content: flex-start;
+}
+
+.button a{
+    color: #095219;
+    text-decoration: none;
+}
 .about-card{
     background: #FDF6F6;
     border-radius: 8px;
@@ -201,6 +222,11 @@ p{
     line-height: 1.4;
     padding: 0;
     margin: 0;
+}
+
+.about-card .button{
+    display: block;
+    margin: 32px 0 0;
 }
 
 .footer .box-container{
@@ -396,7 +422,9 @@ p{
     background-color: #FDF6F6;
     border-radius: 8px;
 }
-
+.btn-event:hover{
+    background-color: #4a7535;
+}
 .events-card h3{
     color: #2F6537;
     margin: 10px 0 8px;
@@ -423,6 +451,7 @@ p{
     color: white;
     text-decoration: none;
 }
+
 
 .contact-section{
     background-color: #FDF6F6;
@@ -675,4 +704,70 @@ p{
     .membership-option{
         grid-template-columns: 1fr;
     }
+}
+
+.donation-title{
+    color: #095219;
+    text-align: center;
+    font-size: 36px;
+    padding: 50px 0 12px;
+    margin: 0;
+}
+
+.donation-subtitle {
+    color: #7a7a7a;
+    text-align: center;
+    font-size: 18px;
+    padding: 0 20px 40px;
+    margin: 0;
+}
+.donation-section{
+    background-color: #FDF6F6;
+    padding: 10px 24px 70px;
+}
+.donate-card h3{
+    color: #2F6537;
+    margin: 8px 0 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.donate-card p{
+    color: #2F6537;
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+.donate-card{
+    background: #ffffff;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    border: 1px solid #d9e9dd;
+    padding: 28px 22px 22px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.donate-btn{
+    background-color: #5A8A42;
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    height: 52px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 30px auto 0;
+    width: 140px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.donate-btn:hover{
+    background-color: #4a7535;
 }
