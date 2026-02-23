@@ -556,3 +556,123 @@ p{
 .form-btn:hover{
     background-color: #4a7535;
 }
+.membership-home{
+    background: linear-gradient(to bottom,
+    #cfe3d4 0%,
+    #eaf4ee 60%,
+    #f6fbf8 100% 
+    );
+}
+
+.membership-title{
+    text-align: center;
+    color: #095219;
+    font-size: 36px;
+    padding: 50px 0 12px;
+    margin: 0;
+}
+
+.membership-section{
+    padding: 10px 24px 70px;
+}
+
+.membership-description{
+    text-align: center;
+    color:#7a7a7a;
+    font-size: 18px;
+    padding: 0 20px 40px;
+    margin: 0;
+}
+
+.membership-option{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.membership-card{
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    border: 1px solid #d9e9dd;
+    padding: 28px 22px 22px;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.membership-option .membership-card h3{
+    color: #2F6537;
+    margin: 8px 0 20px;
+    font-size: 24px;
+}
+
+.membership-option .membership-card p{
+    color: #2F6537;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+.membership-price strong{
+    color: #69a53d;
+    font-size: 58px;
+    line-height: 1;
+}
+
+.membership-price{
+    margin-bottom: 26px !important;
+    color: #4f5d58 !important;
+    font-size: 18px !important;
+    font-weight: 500;
+}
+
+.membership-option .membership-include{
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    color: #4f5d58;
+    font-size: 14px;
+}
+
+.membership-option .membership-include li{
+    border-bottom: 1px solid #e7ece9;
+    padding: 12px 0;
+}
+
+.membership-option .membership-include hr{
+    display: none;
+}
+
+.membership-button,
+.membership-button1,
+.membership-button2{
+    margin-top: 22px;
+    width: 140px;
+    align-self: center;
+    background-color: #5A8A42;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    height: 52px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.membership-button:hover,
+.membership-button1:hover,
+.membership-button2:hover{
+    background-color: #4a7535;
+}
+
+@media (max-width: 760px){
+    .membership-option{
+        grid-template-columns: 1fr;
+    }
+}
