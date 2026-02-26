@@ -183,7 +183,10 @@ p{
     display: inline-block;
     justify-content: flex-start;
 }
-
+.button:hover{
+    background-color: #cfe3d4;
+    color: white;
+}
 .button a{
     color: #095219;
     text-decoration: none;
@@ -207,22 +210,14 @@ p{
     font-size: 18px;
 }
 
-.about-card h3 a{
-    color: #2F6537;
-    text-decoration: none;
-}
-
-.about-card h3 a:hover{
-    text-decoration: underline;
-}
-
 .about-card p{
-    color: #2F6537;
+    color: #7a7a7a;
     font-size: 14px;
     line-height: 1.4;
     padding: 0;
     margin: 0;
 }
+
 
 .about-card .button{
     display: block;
@@ -770,4 +765,18 @@ p{
 }
 .donate-btn:hover{
     background-color: #4a7535;
+}
+
+.heritage-p{
+    color: black;
+    text-align: left;
+    font-size: 18px;
+    padding: 0 20px 40px;
+    margin: 0;
+}
+
+.heritage-list li{
+    color: black;
+    line-height: 80%;
+    font-size: 16px;
 }
