@@ -8,28 +8,85 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <nav class="menu">
-        <div class="logo">
-            <span class="logo-icon">🌳</span>
-            <span class="logo-text">GreenSpace</span>
+    <header class="site-header">
+        <div class="header-inner">
+            <img src="essex-gardens-logo.svg" alt="Essex Garden Trust" class="brand-mark">
+            <nav class="top-nav" aria-label="Main navigation">
+                <a href = "index.html" class="active">Home</a>
+                <a href = "about.html">What We Do</a>
+                <a href = "events.html">News & Events</a>
+                <a href = "donate.html">Donate</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
         </div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="events.html">Events</a></li>
-            <li><a href="membership.html">Membership</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="donate.html">Donate</a></li>
-            <li><button class="btn">Join Us</button></li>
-        </ul>
-    </nav>
-
+    </header>
+<main>
     <section class="hero">
-        <h1>Preserving Essex's Garden Heritage</h1>
-        <p>Discover the history, arts, and sciences of garden landscapes in Essex </p>
-        <button class="btn1"><a href="events.html">Upcoming Events</a></button>
-        <button class="btn2"><a href="membership.html">Become a member</a></button>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Caring about our green spaces</h1>
+            <p>We celebrate, protect, and share the garden heritage of Essex through research, community protects, and hands-on events for all ages. </p>
+            <div class="hero-actions">
+                <a href="membership.html" class="btn1">Become a member</a>
+                <a href="events.html" class="btn2">Upcoming Events</a>
+            </div>
+        </div>
     </section>
+
+    <section class="intro" id="about">
+        <div class="content">
+            <h2>About Essex Gardens Trust</h2>
+            <p>
+                Essex Gardens Trust is the country's conservation and education charity for designed
+                landscapes. We support historic parks and gardens, run seasonal lectures and walks,
+                and promote the importance of green spaces for wellbeing, wildlife, and local identity.
+            </p>
+        </div>
+    </section>
+
+    <section class="section cards" id="featured">
+        <h2>Featured Gardens Places</h2>
+        <div class="card-grid">
+            <article class="card">
+                <img src="copertina-1.jpg" alt="Historic landscaped park">
+                <div class="card-body">
+                    <h3>Historic Landscapes</h3>
+                    <p>Discover estates and gardens that have shaped Essex history from Tudor to modern times.</p>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.webp" alt="Community gardens and green spaces">
+                <div class="card-body">
+                    <h3>Community Project</h3>
+                    <p>Join local restoration and planting projects that keep our green spaces healthy and welcoming.</p>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="shutterstock_1160412862.webp" alt="Garden path in spring bloom"> 
+                <div class="card-body">
+                    <h3>Seasonal Visits</h3>
+                    <p>Take part in guided tours, talks, and special open days across Essex gardens and parks.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+        <section class="events-preview" id="events">
+        <div class="events-copy">
+            <h2>Upcoming events</h2>
+            <p>From spring walks to winter lecturers, our events connect people with places and stories.</p>
+            <ul>
+                <li>Garden History Lecture - 14 March</li>
+                <li>Volunteer Planting Day - 22 March</li>
+                <li>Open Garden Tour - 12 April</li>
+            </ul>
+            <a href = "events.html" class="btn3">See Full Calendar</a>
+        </div>
+        <img src="istockphoto-1153074786-612x612.jpg" alt="Colorful Spring Flowers">
+    </section>
+
     <section class="footer">
         <div class="box-container">
             <div class="box">
@@ -50,7 +107,7 @@
             <div class="box">
                 <h3>Contact us</h3>
                 <p>(+44/0) 207 608 2409</p>
-                <p>enquiries@greenspace.org</p>
+                <p>enquiries@essexgardentrust.org.uk</p>
             </div>
         </div>
 
@@ -62,7 +119,7 @@
                 <a href="https://www.instagram.com/thegardenstrust/" target="_blank"><i class="fa fa-instagram"></i></a>
                 <a href="https://www.youtube.com/channel/UCpClLRc6V0T062MCHS0TSSQ" target="_blank"><i class="fa fa-youtube"></i></a>
             </div>
-            <p>&copy; 2026 GreenSpace. All rights reserved.</p>
+            <p>&copy; 2026 Essex Garden Trust. All rights reserved.</p>
         </div>
     </section>
 </body>
