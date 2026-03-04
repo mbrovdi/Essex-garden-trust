@@ -14,7 +14,7 @@ a{
 }
 
 .site-header{
-    background: #79bec4;
+    background: #ffffff;
     border-bottom: 1px sold #9ec8cc;
     position: sticky;
     top: 0;
@@ -92,14 +92,6 @@ a{
     font-size: clamp(1rem, 1.8vw, 1.25rem);
 }
 
-.hero-action{
-    margin-top: 26px;
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
 .btn1{
     display: inline-block;
     text-decoration: none;
@@ -137,13 +129,6 @@ section{
     margin: 0 0 14px;
     color: #22413f;
     font-size: clamp(1.6rem, 2.6vw, 2.3rem);
-}
-
-.intro .section-content{
-    background: #ffffff;
-    border: 1px solid #dde7e6;
-    border-radius: 12px;
-    padding: 26px;
 }
 
 .intro p{
@@ -202,15 +187,6 @@ section{
     padding-left: 20px;
 }
 
-.events-image{
-    width: 100%;
-    height: 360px;
-    object-fit: cover;
-    border-radius: 12px;
-    border: 1px solid #dde7e6;
-}
-
-
 .footer .box-container{
     display: grid;
     grid-template-columns: repeat(3, minmax(220px, 1fr));
@@ -252,7 +228,7 @@ section{
     text-decoration: underline;
 }
 .footer{
-    background-color: #FDF6F6;
+    background-color: #ffffff;
     border-top: 2px solid #e0e0e0;
     padding: 40px 32px 24px;
 }
@@ -363,19 +339,13 @@ section{
 .about-process{
     padding-top: 0;
 }
-.upcoming-events h1{
-    color: #095219;
-    padding: 50px 0;
-    text-align: center;
-}
-
 .events-section{
     background-color: #ffffff;
     padding: 40px 0 60px;
 }
 
 .upcoming-event{
-    color: #095219;
+    color: #106652;
     text-align: center;
     font-size: 36px;
     margin: 0;
@@ -384,7 +354,7 @@ section{
 
 .events-p{
     text-align: center;
-    color: #095219;
+    color: #106652;
     margin: 0 0 30px;
     font-size: 18px;
 }
@@ -414,19 +384,19 @@ section{
 }
 
 .events-text {
-    color: #2F6537;
+    color: #106652;
     font-size: 14px;
     margin: 6px 0 10px;
 }
 
 .events-text1{
-    color: #2F6537;
+    color: #106652;
     font-size: 14px;
     margin: 0 0 16px;
 }
 
 .btn-event{
-    background-color: #5A8A42;
+    background-color: #106652;
     border: none;
     border-radius: 5px;
     padding: 10px 14px;
@@ -439,7 +409,7 @@ section{
 }
 
 .events-p{
-    color: #095219;
+    color: black;
     text-align: center;
     font-size: 20px;
     padding-bottom: 40px;
@@ -461,24 +431,24 @@ section{
     border-radius: 8px;
 }
 .btn-event:hover{
-    background-color: #4a7535;
+    background-color: #145c4f;
 }
 .events-card h3{
-    color: #2F6537;
+    color: #106652;
     margin: 10px 0 8px;
     font-size: 18px;
     text-align: center;
 }
 
 .events-card p{
-    color: #2F6537;
+    color: black;
     font-size: 14px;
     padding: 0 10px;
     text-align: center;
 }
 
 .btn-event{
-    background-color: #5A8A42;
+    background-color: #106652;
     color: white;
     border: none;
     width: 100px;
@@ -498,14 +468,14 @@ section{
 
 .contact-section .section-title{
     text-align: center;
-    color: #095219;
+    color: #106652;
     font-size: 36px;
     padding-bottom: 20px;
     margin: 0;
 }
 .contact-section .section-subtitle{
     text-align: center;
-    color: #7a7a7a;
+    color: black;
     font-size: 16px;
     padding: 40px;
     margin: 0;
@@ -524,7 +494,7 @@ section{
 }
 .contact-section .section-heading{
     text-align: left;
-    color: #095219;
+    color: #106652;
     font-size: 24px;
     padding: 0 0 20px 0;
     margin: 0;
@@ -546,7 +516,7 @@ section{
 }
 .contact-section .section-heading{
     text-align: left;
-    color: #095219;
+    color: #106652;
     font-size: 24px;
     padding: 0 0 20px 0;
     margin: 0;
@@ -567,7 +537,7 @@ section{
     margin-bottom: 30px 0;
 }
 .contact-section .contact-info-list .contact-info p{
-    color: #095219;
+    color: #106652;
     font-size: 16px;
 }
 .social-buttons{
@@ -578,7 +548,7 @@ section{
 }
 
 .social-btn{
-    background-color: #5A8A42;
+    background-color: #106652;
     color: white;
     display: inline-block;
     min-width: 120px;
@@ -591,25 +561,25 @@ section{
     transition: background-color 0.3s;
 }
 .social-btn:hover{
-    background-color: #4a7535;
+    background-color: #145c4f;
 }
 .contact-form{
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
-.form-input, .form-textarea{
+.form-input{
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 14px;
     font-family: Arial, sans-serif;
 }
-.form-input::placeholder, .form-textarea::placeholder{
+.form-input::placeholder{
     color: #999;
 }
 .form-btn{
-    background-color: #5A8A42;
+    background-color: #106652;
     color: white;
     width: 100%;
     padding: 14px 30px;
@@ -621,7 +591,7 @@ section{
     transition: background-color 0.3s;
 }
 .form-btn:hover{
-    background-color: #4a7535;
+    background-color: #145c4f;
 }
 .membership-home{
     background: linear-gradient(to bottom,
@@ -633,7 +603,7 @@ section{
 
 .membership-title{
     text-align: center;
-    color: #095219;
+    color: #106652;
     font-size: 36px;
     padding: 50px 0 12px;
     margin: 0;
@@ -645,7 +615,7 @@ section{
 
 .membership-description{
     text-align: center;
-    color:#7a7a7a;
+    color: black;
     font-size: 18px;
     padding: 0 20px 40px;
     margin: 0;
@@ -839,10 +809,9 @@ img{
 }
 
 .brand-mark{
-    width: clamp(170px, 28vw, 320px);
+    width: clamp(105px, 16vw, 185px);
 }
 
-.hero-action,
 .hero-actions{
     margin-top: 26px;
     display: flex;
@@ -851,8 +820,7 @@ img{
     flex-wrap: wrap;
 }
 
-.events-preview > img,
-.events-image{
+.events-preview > img{
     width: 100%;
     height: 360px;
     object-fit: cover;
@@ -870,9 +838,9 @@ img{
 
 .donate-grid{
     display: grid;
-    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    grid-template-columns: 1fr;
     gap: 22px;
-    max-width: 1200px;
+    max-width: 460px;
     margin: 0 auto;
     padding: 0 24px;
 }
@@ -896,9 +864,7 @@ img{
 @media (max-width: 1024px){
     .card-grid,
     .about-gallery,
-    .membership-option,
-    .events-grid,
-    .donate-grid{
+    .membership-option{
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
@@ -933,15 +899,13 @@ img{
 
     .card-grid,
     .about-gallery,
-    .events-grid,
     .membership-option,
     .donate-grid,
     .footer .box-container{
         grid-template-columns: 1fr;
     }
 
-    .events-preview > img,
-    .events-image{
+    .events-preview > img{
         height: 250px;
     }
 
@@ -962,7 +926,7 @@ img{
 
 @media (max-width: 480px){
     .brand-mark{
-        width: min(240px, 82vw);
+        width: min(130px, 54vw);
     }
 
     .hero h1{
