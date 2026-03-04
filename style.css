@@ -60,7 +60,7 @@ a{
 .hero{
     position: relative;
     display: grid;
-    background-image:url('nature2.jpg');
+    background-image:url('images/nature2.jpg');
     background-size: cover;
     background-position: center;
     min-height: 72vh;
@@ -822,4 +822,163 @@ section{
     color: black;
     line-height: 1.5;
     font-size: 16px;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+.site-header{
+    border-bottom: 1px solid #9ec8cc;
+}
+
+.top-nav a:hover,
+.top-nav a.active{
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.brand-mark{
+    width: clamp(170px, 28vw, 320px);
+}
+
+.hero-action,
+.hero-actions{
+    margin-top: 26px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.events-preview > img,
+.events-image{
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid #dde7e6;
+    display: block;
+}
+
+.events-grid{
+    max-width: 1200px;
+    margin: 0 auto;
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    padding: 0 24px;
+}
+
+.donate-grid{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    gap: 22px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.contact-section{
+    padding: 50px 0 70px;
+}
+
+.contact-section .section-contect{
+    display: flex;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.social-buttons{
+    flex-wrap: wrap;
+}
+
+@media (max-width: 1024px){
+    .card-grid,
+    .about-gallery,
+    .membership-option,
+    .events-grid,
+    .donate-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .events-preview{
+        grid-template-columns: 1fr;
+    }
+
+    .contact-section .section-contect{
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 760px){
+    .header-inner{
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .top-nav{
+        justify-content: center;
+    }
+
+    .top-nav a{
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    section{
+        padding: 42px 14px;
+    }
+
+    .card-grid,
+    .about-gallery,
+    .events-grid,
+    .membership-option,
+    .donate-grid,
+    .footer .box-container{
+        grid-template-columns: 1fr;
+    }
+
+    .events-preview > img,
+    .events-image{
+        height: 250px;
+    }
+
+    .events-grid,
+    .donate-grid,
+    .contact-section .section-contect{
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .membership-title,
+    .donation-title,
+    .upcoming-event,
+    .contact-section .section-title{
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 480px){
+    .brand-mark{
+        width: min(240px, 82vw);
+    }
+
+    .hero h1{
+        font-size: 1.8rem;
+    }
+
+    .social-btn,
+    .form-btn,
+    .btn1,
+    .btn2,
+    .btn-event,
+    .donate-btn,
+    .membership-button,
+    .membership-button1,
+    .membership-button2{
+        width: 100%;
+        max-width: 280px;
+    }
 }
