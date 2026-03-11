@@ -13,10 +13,18 @@
             <img src="Untitled-removebg-preview.png" alt="Essex Garden Trust" class="brand-mark">
             <nav class="top-nav" aria-label="Main navigation">
                 <a href = "index.html" class="active">Home</a>
-                <a href = "whatwedo.html">What We Do</a>
+                <details class="nav-dropdown">
+                    <summary>What We Do</summary>
+                    <div class="dropdown-menu">
+                        <a href="whatwedo.html">Overview</a>
+                        <a href="heritage.html">Heritage</a>
+                    </div>
+                </details>
                 <a href = "events.html">News & Events</a>
                 <a href = "donate.html">Donate</a>
                 <a href="contact.html">Contact Us</a>
+                <button onclick="joinUs()" class="btn-join" a href="membership.html">Join Us</button>
+
             </nav>
         </div>
     </header> 
