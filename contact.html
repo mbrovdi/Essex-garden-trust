@@ -6,17 +6,41 @@
     <title>Garden Space</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src=".js"></script>
 </head>
 <body class="membership-home">
     <header class="site-header">
         <div class="header-inner">
             <img src="Untitled-removebg-preview.png" alt="Essex Garden Trust" class="brand-mark">
             <nav class="top-nav" aria-label="Main navigation">
-                <a href = "index.html" class="active">Home</a>
-                <a href = "whatwedo.html">What We Do</a>
-                <a href = "events.html">News & Events</a>
-                <a href = "donate.html">Donate</a>
-                <a href="contact.html">Contact Us</a>
+                <div class="droplist">
+                    <a href="index.html" class="dropbtn">Home</a>
+                    <div class="dropdown-menu">
+                        <a href="conversation.html">Conversation</a>
+                        <a href="whatwedo.html">What We Do</a>
+                        <a href="education.html">Education</a>
+                        <a href="research.html">Research</a>
+                    </div>
+                </div>
+                <div class="droplist">
+                    <a href="events.html" class="dropbtn">News & Events</a>
+                    <div class="dropdown-menu">
+                        <a href="events.html">Events</a>
+                        <a href="news.html">News</a>
+                    </div>
+                </div>
+                <div class="droplist">
+                    <a href="donate.html" class="dropbtn">Donate</a>
+                    <div class="dropdown-menu">
+                    <a href="support.html">Corporate Support</a>
+                    </div>
+                </div>
+                <div class="droplist">
+                    <a href="contact.html" class="dropbtn">Contact Us</a>
+                    <div class="dropdown-menu">
+                        <a href="volunteer.html">Volunteer</a>
+                    </div>
+                </div>
                 <button onclick="joinUs()" class="btn-join" a href="membership.html">Join Us</button>
             </nav>
         </div>

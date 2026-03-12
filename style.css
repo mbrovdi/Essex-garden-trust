@@ -23,15 +23,15 @@ a{
 .header-inner{
     max-width: 1200px;
     margin: 0 auto;
-    padding: 12px 18px;
+    padding: 2px 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 12px;
 }
 
 .brand-mark{
-    width: 320px;
+    width: 130px;
     max-width: 50vw;
 }
 
@@ -39,6 +39,7 @@ a{
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
+    align-items: center;
     gap: 6px;
 }
 
@@ -46,10 +47,10 @@ a{
     text-decoration: none;
     text-transform: uppercase;
     font-size: 14px;
-    letter-spacing: 0.8px;
+    letter-spacing: 0.5px;
     font-weight: 700;
-    padding: 9px 12px;
-    border-radius: 4px;
+    padding: 8px 11px;
+    border-radius: 5px;
 }
 
 .top-nav a:hover,
@@ -60,7 +61,7 @@ a{
 .hero{
     display: grid;
     place-items: center;
-    background-image:url('images/nature2.jpg');
+    background-image:url('images/gauravfkumar-water-4542012_1920.jpg');
     background-size: cover;
     background-position: center;
     min-height: 72vh;
@@ -101,12 +102,12 @@ a{
 .btn-join{
     background-color: #167e68;
     color: white;
-    border: 3px solid #167e68;
-    border-radius: 6px;
-    padding: 11px 18px;
+    border: 2px solid #167e68;
+    border-radius: 5px;
+    padding: 9px 13px;
     font-weight: 700px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
 }
 .btn-join:hover{
     background-color: #106652;
@@ -956,7 +957,7 @@ img{
 
 @media (max-width: 480px){
     .brand-mark{
-        width: min(130px, 54vw);
+        width: min(90px, 46vw);
     }
 
     .hero h1{
@@ -976,3 +977,144 @@ img{
         max-width: 280px;
     }
 }
+
+.container-news{
+    max-width: fit-content;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.container-header{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.news-subtitle{
+    color: #7a7a7a;
+    font-size: 18px;
+    margin: 0;
+    padding: 0 20px;
+}
+
+.news-title{
+    color: #106652;
+    font-size: 36px;
+    margin: 0 0 12px;
+    padding-top: 10px;
+}
+
+.news-grid{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    gap: 30px;
+    padding: 0 60px;
+    background-color: #FDF6F6;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+.btn-news{
+    background-color: #106652;
+    color: white;
+    border: none;
+    width: 100px;
+    height: 45px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+.btn-event a{
+    color: white;
+    text-decoration: none;
+}
+
+.btn-news:hover{
+    background-color: #145c4f;
+}
+.news-card{
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    border: 1px solid #d9e9dd;
+    padding: 20px;
+    text-align: center;
+}
+
+.news-card img{
+    width: 100%;
+    border-radius: 9px;
+    object-fit: cover;
+    height: 200px;
+}
+
+.news-card h3{
+    color: #106652;
+    margin: 10px 0 8px;
+    font-size: 18px;
+}
+
+@media (max-width: 900px){
+    .news-grid{
+        grid-template-columns: repeat(2, minmax(220px, 1fr));
+        padding: 0 24px;
+    }
+}
+
+@media (max-width: 600px){
+    .news-grid{
+        grid-template-columns: 1fr;
+        padding: 0 12px;
+    }
+}
+
+.dropbtn{
+    background-color: #ffffff;
+    padding: 0 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    min-height: 34px;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.dropbtn:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.dropdown-menu a{
+    display: flex;
+    padding: 0 10px;
+    min-height: 34px;
+    align-items: center;
+    text-decoration: none;
+}
+
+.top-nav .dropbtn,
+.top-nav .dropdown-menu a{
+    color: #106652;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.dropdown-menu a:hover{
+    background-color: #f1f1f1;
+}
+
+.droplist .dropdown-menu {
+    background-color: #ffffffe3;
+    position: absolute;
+    min-width: 150px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    padding: 4px 0;
+    gap: 4px;
+    flex-direction: column;
+    display: none;
+    z-index: 1;
+}
+.droplist:hover .dropdown-menu {
+    display: flex;
+}
+
