@@ -6,7 +6,7 @@
     <title>Garden Space</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src=".js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body class="membership-home">
     <header class="site-header">
@@ -41,7 +41,7 @@
                         <a href="volunteer.html">Volunteer</a>
                     </div>
                 </div>
-                <button onclick="joinUs()" class="btn-join" a href="membership.html">Join Us</button>
+                <a href="membership.html" class="btn-join">Join Us</a>
             </nav>
         </div>
     </header>
@@ -91,6 +91,30 @@
                 </ul>
                 <button class="membership-button2" onclick="location.href='join.html'">Join Now</button>
             </div>
+        </div>
+    </section>
+    
+    <section class="membership-form-section">
+        <div class="membership-form-card">
+            <h2 class="membership-form-title">Your details</h2>
+            <form class="membership-form" action="#" method="post">
+                <div class="membership-form-row">
+                    <input type="text" class="membership-form-input" name="firstName" placeholder="First name *" required>
+                    <input type="text" class="membership-form-input" name="lastName" placeholder="Last name *" required>
+                </div>
+                <input type="email" class="membership-form-input" name="email" placeholder="Email address *" required>
+                <select class="membership-form-input" name="source" required>
+                    <option value="" selected disabled>How did you hear about the Gardens Trust? *</option>
+                    <option value="social">Social media</option>
+                    <option value="event">Event</option>
+                    <option value="friend">Friend or family</option>
+                    <option value="search">Search engine</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" class="membership-form-input" name="details" placeholder="Please provide details">
+                <input type="text" class="membership-form-input" name="promoCode" placeholder="Promo code">
+                <button type="submit" class="membership-form-submit">Continue</button>
+            </form>
         </div>
     </section>
     <section class="footer">

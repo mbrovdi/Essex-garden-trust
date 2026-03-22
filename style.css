@@ -43,6 +43,28 @@ a{
     gap: 6px;
 }
 
+.menu-toggle{
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #9ec8cc;
+    border-radius: 6px;
+    background: #ffffff;
+    cursor: pointer;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.menu-line{
+    width: 22px;
+    height: 2px;
+    background-color: #106652;
+    display: block;
+}
+
 .top-nav a{
     text-decoration: none;
     text-transform: uppercase;
@@ -106,6 +128,10 @@ a{
     color: white;
     border: 2px solid #167e68;
     border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
     padding: 9px 13px;
     font-weight: 700px;
     cursor: pointer;
@@ -744,9 +770,102 @@ section{
     background-color: #4a7535;
 }
 
+.membership-form-section{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 70px;
+}
+
+.membership-form-card{
+    background: #f1f1f1;
+    border: 1px solid #d8dedb;
+    border-radius: 8px;
+    padding: 26px;
+}
+
+.membership-form-title{
+    margin: 0 0 18px;
+    color: #2b2f2f;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.membership-form{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.membership-form-row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.membership-form-input{
+    width: 100%;
+    min-height: 58px;
+    padding: 14px 16px;
+    border: 1px solid #c2c7c4;
+    border-radius: 6px;
+    font-size: 20px;
+    color: #3d4240;
+    background: #fff;
+}
+
+.membership-form-input::placeholder{
+    color: #7e8381;
+}
+
+.membership-form-input:focus{
+    outline: none;
+    border-color: #8ea79f;
+}
+
+.membership-form-submit{
+    margin-top: 8px;
+    align-self: flex-start;
+    min-width: 180px;
+    height: 52px;
+    border: none;
+    border-radius: 8px;
+    background: #106652;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.membership-form-submit:hover{
+    background: #0f5645;
+}
+
+
 @media (max-width: 760px){
     .membership-option{
         grid-template-columns: 1fr;
+    }
+
+    .membership-form-section{
+        padding: 0 14px 52px;
+    }
+
+    .membership-form-card{
+        padding: 18px 14px;
+    }
+
+    .membership-form-title{
+        font-size: 32px;
+    }
+
+    .membership-form-row{
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .membership-form-input{
+        min-height: 52px;
+        font-size: 18px;
     }
 }
 
@@ -1216,5 +1335,156 @@ img{
 
     .gallery-link img{
         height: 260px;
+    }
+}
+
+@media (max-width: 760px){
+    body{
+        overflow-x: hidden;
+    }
+
+    .header-inner{
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 10px 12px;
+    }
+
+    .brand-mark{
+        margin: 0;
+    }
+
+    .menu-toggle{
+        display: inline-flex;
+    }
+
+    .js-enabled .top-nav{
+        width: 100%;
+        display: none;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-top: 8px;
+    }
+
+    .js-enabled .top-nav.is-open{
+        display: grid;
+    }
+
+    .top-nav{
+        width: 100%;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-top: 8px;
+    }
+
+    .droplist{
+        width: 100%;
+        position: static;
+    }
+
+    .dropbtn,
+    .top-nav a{
+        width: 100%;
+        min-height: 42px;
+        justify-content: center;
+        text-align: center;
+        padding: 10px 12px;
+    }
+
+    .droplist .dropdown-menu{
+        position: static;
+        display: flex;
+        box-shadow: none;
+        background: transparent;
+        min-width: 0;
+        padding: 0;
+        margin-top: 2px;
+    }
+
+    .top-nav .dropdown-menu a{
+        min-height: 36px;
+        font-size: 13px;
+    }
+
+    section{
+        padding: 36px 14px;
+    }
+
+    .hero{
+        min-height: 58vh;
+    }
+
+    .hero-content{
+        padding: 22px 14px;
+    }
+
+    .events-preview,
+    .contact-section .section-contect,
+    .card-grid,
+    .about-gallery,
+    .membership-option,
+    .events-grid,
+    .news-grid,
+    .gallery-grid,
+    .footer .box-container{
+        grid-template-columns: 1fr;
+    }
+
+    .events-grid,
+    .news-grid,
+    .gallery-grid,
+    .contact-section .section-contect,
+    .donate-grid{
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .about-gallery img,
+    .events-card img,
+    .news-card img,
+    .gallery-link img,
+    .events-preview > img{
+        height: 240px;
+    }
+
+    .contact-section{
+        padding: 38px 0 54px;
+    }
+
+    .contact-section .section-title,
+    .upcoming-event,
+    .donation-title,
+    .news-title,
+    .section-title{
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px){
+    .hero h1{
+        font-size: 1.65rem;
+    }
+
+    .hero p{
+        font-size: 0.98rem;
+    }
+
+    .dropbtn,
+    .top-nav .dropdown-menu a{
+        font-size: 12px;
+    }
+
+    .menu-toggle{
+        width: 40px;
+        height: 40px;
+    }
+
+    .about-gallery img,
+    .events-card img,
+    .news-card img,
+    .gallery-link img,
+    .events-preview > img{
+        height: 220px;
     }
 }
