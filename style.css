@@ -785,8 +785,8 @@ section{
 
 .membership-form-title{
     margin: 0 0 18px;
-    color: #2b2f2f;
-    font-size: 40px;
+    color: #106652;
+    font-size: 28px;
     font-weight: 600;
 }
 
@@ -808,9 +808,9 @@ section{
     padding: 14px 16px;
     border: 1px solid #c2c7c4;
     border-radius: 6px;
-    font-size: 20px;
+    font-size: 14px;
     color: #3d4240;
-    background: #fff;
+    background: #ffffff;
 }
 
 .membership-form-input::placeholder{
@@ -865,7 +865,7 @@ section{
 
     .membership-form-input{
         min-height: 52px;
-        font-size: 18px;
+        font-size: 14px;
     }
 }
 
@@ -1486,5 +1486,243 @@ img{
     .gallery-link img,
     .events-preview > img{
         height: 220px;
+    }
+}
+
+.volunteering-section{
+    padding: 40px 0 60px;
+    background-image: url(images/volunteering.webp);
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.volunteering-title{
+    color: #ffffff;
+    font-size: 36px;
+    margin: 0 0 20px;
+    text-shadow: 2px 2px 6px black;
+}
+
+.volunteering-description{
+    color: #ffffff;
+    font-size: 18px;
+    margin: 0 0 20px;
+    font-family: "Segoe UI",Arial, sans-serif;
+    line-height: 1.5;
+    text-shadow: 2px 2px 6px black;
+}
+
+.volunteering-images{
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 24px 18px 40px;
+}
+
+.volunteer-slider{
+    position: relative;
+}
+
+.volunteer-viewport{
+    overflow: hidden;
+    border: 1px solid #d8d8d8;
+    background: #eeeeee;
+    padding: 28px;
+}
+
+.volunteering-list{
+    position: relative;
+    height: 520px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    touch-action: pan-y;
+}
+
+.volunteering-list .volunteering-item{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: left 0.35s ease, right 0.35s ease, width 0.35s ease, opacity 0.35s ease;
+}
+
+.volunteering-list .volunteering-item .volunteering-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    border: none;
+    display: block;
+}
+
+.volunteering-list .volunteering-caption{
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    margin: 0;
+    padding: 9px 16px;
+    border-radius: 30px;
+    background: rgba(17, 17, 17, 0.72);
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.volunteering-list .volunteering-item.active{
+    left: 26%;
+    width: 48%;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 3;
+}
+
+.volunteering-list .volunteering-item.active .volunteering-caption{
+    opacity: 1;
+}
+
+.volunteering-list .volunteering-item.prev{
+    left: 0;
+    width: 22%;
+    opacity: 1;
+    z-index: 2;
+}
+
+.volunteering-list .volunteering-item.next{
+    right: 0;
+    width: 22%;
+    opacity: 1;
+    z-index: 2;
+}
+
+.volunteer-nav{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 72px;
+    width: 72px;
+    border-radius: 50%;
+    border: none;
+    color: #1f2a2d;
+    background: #d9d9d9;
+    cursor: pointer;
+    font-size: 48px;
+    line-height: 1;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.volunteer-prev{
+    left: -34px;
+}
+
+.volunteer-next{
+    right: -34px;
+}
+
+.volunteer-nav:hover{
+    background: #cfcfcf;
+}
+
+.volunteer-dots{
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.volunteer-dot{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: #c6d4cd;
+    cursor: pointer;
+}
+
+.volunteer-dot.active{
+    background: #106652;
+}
+
+@media (max-width: 980px){
+    .volunteering-images{
+        padding: 18px 12px 32px;
+    }
+
+    .volunteer-viewport{
+        padding: 0;
+        border: 1px solid #d8d8d8;
+        background: #eeeeee;
+    }
+
+    .volunteering-list{
+        display: flex;
+        position: static;
+        height: auto;
+        transition: transform 0.35s ease;
+        width: 100%;
+    }
+
+    .volunteering-list .volunteering-item{
+        position: static;
+        min-width: 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding: 14px;
+        opacity: 1;
+        pointer-events: auto;
+        width: 100%;
+    }
+
+    .volunteering-list .volunteering-item.active,
+    .volunteering-list .volunteering-item.prev,
+    .volunteering-list .volunteering-item.next{
+        left: auto;
+        right: auto;
+        width: 100%;
+        max-width: 100%;
+        z-index: auto;
+    }
+
+    .volunteering-list .volunteering-item .volunteering-image{
+        height: 200px;
+        width: 100%;
+    }
+
+    .volunteering-list .volunteering-caption{
+        position: static;
+        transform: none;
+        margin: 12px auto 0;
+        width: fit-content;
+        background: #f1f1f1;
+        color: #106652;
+        opacity: 1;
+        white-space: normal;
+        text-align: center;
+    }
+
+    .volunteer-nav{
+        height: 40px;
+        width: 40px;
+        font-size: 26px;
+    }
+
+    .volunteer-prev{
+        left: 6px;
+    }
+
+    .volunteer-next{
+        right: 6px;
     }
 }
