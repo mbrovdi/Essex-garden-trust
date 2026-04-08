@@ -233,4 +233,74 @@ function setupVolunteerSlider() {
 
 setupVolunteerSlider();
 
+function setupEventsLoadMore() {
+    const eventsSection = document.querySelector("[data-events-section]");
+
+    if (!eventsSection) {
+        return;
+    }
+
+    const cards = Array.from(eventsSection.querySelectorAll(".events-card"));
+    const loadMoreBtn = eventsSection.querySelector("[data-events-load-more]");
+
+    if (cards.length === 0 || !loadMoreBtn) {
+        return;
+    }
+
+    const step = 6;
+    let visible = 3;
+
+    const renderEvents = () => {
+        cards.forEach((card, index) => {
+            card.style.display = index < visible ? "block" : "none";
+        });
+
+        loadMoreBtn.style.display = visible >= cards.length ? "none" : "inline-block";
+    };
+
+    loadMoreBtn.addEventListener("click", () => {
+        visible += step;
+        renderEvents();
+    });
+
+    renderEvents();
+}
+
+setupEventsLoadMore();
+
+function setupNewsLoadMore() {
+    const newsSection = document.querySelector("[data-news-section]");
+
+    if (!newsSection) {
+        return;
+    }
+
+    const cards = Array.from(newsSection.querySelectorAll(".news-card"));
+    const loadMoreBtn = newsSection.querySelector("[data-news-load-more]");
+
+    if (cards.length === 0 || !loadMoreBtn) {
+        return;
+    }
+
+    const step = 6;
+    let visible = 3;
+
+    const renderNews = () => {
+        cards.forEach((card, index) => {
+            card.style.display = index < visible ? "block" : "none";
+        });
+
+        loadMoreBtn.style.display = visible >= cards.length ? "none" : "inline-block";
+    };
+
+    loadMoreBtn.addEventListener("click", () => {
+        visible += step;
+        renderNews();
+    });
+
+    renderNews();
+}
+
+setupNewsLoadMore();
+
 

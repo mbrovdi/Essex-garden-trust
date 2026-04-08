@@ -44,6 +44,10 @@ a{
 }
 
 .menu-toggle{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
     display: none;
     width: 44px;
     height: 44px;
@@ -471,6 +475,27 @@ section{
     text-decoration: none;
 }
 
+.events-load-more-wrap{
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+}
+
+.events-load-more{
+    background-color: #106652;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.events-load-more:hover{
+    background-color: #145c4f;
+}
+
 .events-p{
     color: black;
     text-align: center;
@@ -492,6 +517,22 @@ section{
     padding: 0 60px;
     background-color: #FDF6F6;
     border-radius: 8px;
+}
+
+.events-grid--more{
+    grid-template-columns: 1fr;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.events-grid--more .events-card{
+    max-width: 100%;
+}
+
+.events-load-more-wrap{
+    display: flex;
+    justify-content: center;
+    margin: 28px 0;
 }
 .btn-event:hover{
     background-color: #145c4f;
@@ -1135,6 +1176,30 @@ img{
     border-radius: 8px;
     margin-bottom: 40px;
 }
+.news-grid--more{
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+}
+.news-grid--more .news-card{
+    max-width: 100%;
+}
+.news-load-more-wrap{
+    display: flex;
+    justify-content: center;
+    margin: 24px 0 32px;
+}
+.news-load-more{
+    background-color: #106652;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.news-load-more:hover{
+    background-color: #145c4f;
+}
 
 .btn-news{
     background-color: #106652;
@@ -1145,9 +1210,14 @@ img{
     border-radius: 5px;
     cursor: pointer;
     position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
-.btn-event a{
+.btn-event a,
+.btn-news{
     color: white;
     text-decoration: none;
 }
@@ -1182,12 +1252,20 @@ img{
         grid-template-columns: repeat(2, minmax(220px, 1fr));
         padding: 0 24px;
     }
+
+    .news-grid--more{
+        grid-template-columns: repeat(2, minmax(220px, 1fr));
+    }
 }
 
 @media (max-width: 600px){
     .news-grid{
         grid-template-columns: 1fr;
         padding: 0 12px;
+    }
+
+    .news-grid--more{
+        grid-template-columns: 1fr;
     }
 }
 
