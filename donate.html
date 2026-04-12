@@ -47,28 +47,93 @@
         </div>
     </header>
 
-    <!-- Donation options and contribution amounts -->
-    <section class="donation-section">
-        <h3 class="donation-title">Donation Online</h3>
-        <p class="donation-subtitle">Every year, generous supporters make it possible to protect historic green spaces for everyone to enjoy</p>
-        <div class="donate-grid">
-            <div class="donate-card">
-                <h3>£10</h3>
-                <p>Helps fund educational resources for visitors and schools.</p>
-                <button class="donate-btn">Donate £10</button>
+    <main>
+        <!-- Donation hero with core mission message -->
+        <section class="donate-hero">
+            <div class="donate-hero-overlay"></div>
+            <div class="donate-hero-content">
+                <h1>Help Protect Essex's Garden Heritage</h1>
+                <p>Your gift supports conservation, education, and community access to historic landscapes.</p>
+                <a href="#donation-options" class="btn1">Donate Today</a>
             </div>
-            <div class="donate-card">
-                <h3>£25</h3>
-                <p>Supports guided talk and seasonal garden events.</p>
-                <button class="donate-btn">Donate £25</button>
+        </section>
+
+        <!-- Donation options and impact-focused contribution amounts -->
+        <section class="donation-section" id="donation-options">
+            <h3 class="donation-title">Choose Your Impact</h3>
+            <p class="donation-subtitle">Every contribution helps preserve historic green spaces and bring more people into nature.</p>
+
+            <div class="donation-frequency" aria-label="Donation type">
+                <button type="button" class="freq-btn active">One-time</button>
+                <button type="button" class="freq-btn">Monthly</button>
             </div>
-            <div class="donate-card">
-                <h3>£50</h3>
-                <p>Contributes to heritage conservation and restoration work.</p>
-                <button class="donate-btn">Donate £50</button>
+
+            <div class="payment-methods" aria-label="Payment method">
+                <p class="payment-methods-label">Payment method</p>
+                <div class="payment-methods-options">
+                    <button type="button" class="payment-method-btn active" data-payment-method="paypal">PayPal</button>
+                    <button type="button" class="payment-method-btn" data-payment-method="stripe">Card (Stripe)</button>
+                </div>
+            </div>
+
+            <div class="donate-grid">
+                <article class="donate-card">
+                    <p class="donate-icon"><i class="fa fa-leaf" aria-hidden="true"></i></p>
+                    <h3>£10</h3>
+                    <p class="donate-impact">Funds educational materials for a school or family garden session.</p>
+                    <button type="button" class="donate-btn" data-donation-amount="10">Donate £10</button>
+                </article>
+
+                <article class="donate-card donate-card-featured">
+                    <span class="donate-badge">Most Popular</span>
+                    <p class="donate-icon"><i class="fa fa-users" aria-hidden="true"></i></p>
+                    <h3>£25</h3>
+                    <p class="donate-impact">Supports guided talks, volunteer days, and seasonal community events.</p>
+                    <button type="button" class="donate-btn" data-donation-amount="25">Donate £25</button>
+                </article>
+
+                <article class="donate-card">
+                    <p class="donate-icon"><i class="fa fa-university" aria-hidden="true"></i></p>
+                    <h3>£50</h3>
+                    <p class="donate-impact">Contributes directly to restoration work and heritage landscape care.</p>
+                    <button type="button" class="donate-btn" data-donation-amount="50">Donate £50</button>
+                </article>
+            </div>
+
+            <div class="donation-trust-bar">
+                <span>Secure giving</span>
+                <span>Registered charity support</span>
+                <span>Every gift supports conservation and education</span>
+            </div>
+
+            <blockquote class="donation-quote">
+                "Thanks to supporters, more local people are discovering and caring for Essex's historic gardens every year."
+            </blockquote>
+        </section>
+
+        <!-- Closing call-to-action for visitors who reach the end of the page -->
+        <section class="donation-cta-band">
+            <h2>Together we can keep these landscapes alive for future generations.</h2>
+            <button type="button" class="donate-btn" data-donation-amount="25">Make a Gift</button>
+        </section>
+
+        <div class="payment-demo-modal" id="paymentDemoModal" hidden>
+            <div class="payment-demo-backdrop" data-payment-demo-close></div>
+            <div class="payment-demo-dialog" role="dialog" aria-modal="true" aria-labelledby="paymentDemoTitle">
+                <h3 id="paymentDemoTitle">Payment Demo</h3>
+                <p class="payment-demo-text">This assignment uses a frontend-only demo checkout.</p>
+                <p class="payment-demo-summary">
+                    You selected: <strong>£<span id="paymentDemoAmount">0</span></strong><br>
+                    Method: <strong><span id="paymentDemoMethod">PayPal</span></strong><br>
+                    Type: <strong><span id="paymentDemoFrequency">One-time</span></strong>
+                </p>
+                <div class="payment-demo-actions">
+                    <button type="button" class="freq-btn" data-payment-demo-close>Cancel</button>
+                    <button type="button" class="donate-btn" id="paymentDemoConfirm">Confirm Demo Payment</button>
+                </div>
             </div>
         </div>
-    </section>
+    </main>
 
     <!-- Site footer with contact details, quick links, and social media -->
     <section class="footer">

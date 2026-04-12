@@ -196,6 +196,54 @@ section{
     font-size: 1.05rem;
 }
 
+.google-works-access{
+    padding-top: 10px;
+}
+
+.google-works-access h2{
+    margin: 0 0 10px;
+    color: #22413f;
+    font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+}
+
+.google-works-access > p{
+    margin: 0 0 18px;
+    color: #425450;
+}
+
+.google-works-grid{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(170px, 1fr));
+    gap: 14px;
+}
+
+.google-work-card{
+    display: block;
+    text-decoration: none;
+    background: #ffffff;
+    border: 1px solid #d8e5e1;
+    border-radius: 10px;
+    padding: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.google-work-card:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.google-work-card h3{
+    margin: 0 0 8px;
+    color: #106652;
+    font-size: 1.05rem;
+}
+
+.google-work-card p{
+    margin: 0;
+    color: #4f605c;
+    font-size: 0.94rem;
+}
+
 .cards{
     padding-top: 9px;
 }
@@ -893,6 +941,26 @@ section{
     background: #0f5645;
 }
 
+.membership-payment-card{
+    background: #ffffff;
+    border: 1px solid #d8dedb;
+    border-radius: 8px;
+    padding: 24px;
+    margin-top: 18px;
+}
+
+.membership-payment-summary{
+    margin: 0 0 14px;
+    color: #374a45;
+    line-height: 1.6;
+}
+
+.membership-payment-note{
+    margin: 12px 0 0;
+    color: #5f726d;
+    font-size: 0.92rem;
+}
+
 
 @media (max-width: 760px){
     .membership-option{
@@ -923,50 +991,253 @@ section{
 }
 
 /* Donate page card stack and call-to-action button. */
+.donate-hero{
+    position: relative; /* Create positioning context for absolutely positioned children */
+    min-height: 46vh;
+    border-radius: 14px;
+    overflow: hidden; /* Clip overflowing child content */
+    margin: 14px 24px 0;
+    background-image: url("images/garden-tour1.jpg");
+    background-size: cover;
+    background-position: center;
+    display: grid; /* Use grid layout for structured columns/rows */
+    place-items: center;
+}
+
+.donate-hero-overlay{
+    position: absolute; /* Position element relative to nearest positioned ancestor */
+    inset: 0; /* Stretch absolutely positioned overlay to all four edges */
+    background: linear-gradient(120deg, rgba(9, 36, 42, 0.72), rgba(22, 126, 104, 0.52));
+}
+
+.donate-hero-content{
+    position: relative; /* Create positioning context for absolutely positioned children */
+    z-index: 1; /* Layer element above its background overlay */
+    text-align: center; /* Center-align section titles and callouts */
+    max-width: 760px;
+    padding: 28px 20px;
+    color: #ffffff; /* High contrast text on dark/brand backgrounds */
+}
+
+.donate-hero-content h1{
+    margin: 0 0 10px; /* Remove default outer spacing */
+    font-size: clamp(2rem, 4.2vw, 3.1rem);
+}
+
+.donate-hero-content p{
+    margin: 0 0 22px; /* Remove default outer spacing */
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+}
+
 .donation-title{
     color: #106652;
     text-align: center; /* Center-align section titles and callouts */
     font-size: 36px;
-    padding: 50px 0 12px;
+    padding: 22px 0 12px;
     margin: 0; /* Remove default outer spacing */
 }
 
 .donation-subtitle {
-    color: #7a7a7a;
+    color: #4e615d;
     text-align: center; /* Center-align section titles and callouts */
     font-size: 18px;
-    padding: 0 20px 40px;
-    margin: 0; /* Remove default outer spacing */
+    max-width: 780px;
+    padding: 0 20px 18px;
+    margin: 0 auto; /* Center block horizontally */
 }
-.donation-section{
-    padding: 10px 24px 70px;
+
+.donation-frequency{
+    display: flex; /* Use flexible layout for row/column alignment */
+    justify-content: center; /* Center children along main axis */
+    gap: 12px;
+    margin: 14px 0 30px;
 }
-.donate-card h3{
-    color: #106652;
-    margin: 8px 0 20px;
-    font-size: 24px;
+
+.payment-methods{
+    max-width: 760px;
+    margin: 0 auto 24px; /* Center block horizontally */
     text-align: center; /* Center-align section titles and callouts */
 }
 
-.donate-card p{
-    color: #106652;
-    font-size: 15px;
-    padding: 0; /* Remove default inner spacing */
-    margin: 0; /* Remove default outer spacing */
+.payment-methods-label{
+    margin: 0 0 10px; /* Remove default outer spacing */
+    color: #37524a;
+    font-size: 14px; /* Keep body/control text compact and readable */
+    font-weight: 700; /* Emphasize headings and primary actions */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.payment-methods-options{
+    display: flex; /* Use flexible layout for row/column alignment */
+    justify-content: center; /* Center children along main axis */
+    gap: 10px;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+}
+
+.payment-method-btn{
+    border: 1px solid #a8c0b4;
+    background: #ffffff; /* White surface for readability and contrast */
+    color: #23423a;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 14px; /* Keep body/control text compact and readable */
+    font-weight: 600;
+    cursor: pointer; /* Indicate clickable interactive element */
+}
+
+.payment-method-btn.active,
+.payment-method-btn:hover{
+    background: #106652;
+    border-color: #106652;
+    color: #ffffff; /* High contrast text on dark/brand backgrounds */
+}
+
+.payment-demo-modal{
+    position: fixed; /* Position element relative to viewport */
+    inset: 0; /* Stretch absolutely positioned overlay to all four edges */
+    z-index: 40;
+}
+
+.payment-demo-backdrop{
+    position: absolute; /* Position element relative to nearest positioned ancestor */
+    inset: 0; /* Stretch absolutely positioned overlay to all four edges */
+    background: rgba(7, 24, 29, 0.56);
+}
+
+.payment-demo-dialog{
+    position: relative; /* Create positioning context for absolutely positioned children */
+    max-width: 460px;
+    margin: 12vh auto 0; /* Center block horizontally */
+    background: #ffffff; /* White surface for readability and contrast */
+    border-radius: 12px;
+    border: 1px solid #cfe0d5;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+    padding: 22px;
     text-align: center; /* Center-align section titles and callouts */
 }
+
+.payment-demo-dialog h3{
+    margin: 0 0 8px; /* Remove default outer spacing */
+    color: #106652;
+}
+
+.payment-demo-text{
+    margin: 0 0 12px; /* Remove default outer spacing */
+    color: #425450;
+}
+
+.payment-demo-summary{
+    margin: 0; /* Remove default outer spacing */
+    color: #2f3c39;
+    line-height: 1.6;
+}
+
+.payment-demo-actions{
+    margin-top: 16px;
+    display: flex; /* Use flexible layout for row/column alignment */
+    justify-content: center; /* Center children along main axis */
+    gap: 10px;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+}
+
+.payment-demo-actions .donate-btn,
+.payment-demo-actions .freq-btn{
+    margin-top: 0;
+}
+
+.freq-btn{
+    border: 1px solid #99b4a9;
+    background: #ffffff; /* White surface for readability and contrast */
+    color: #1f2a2d;
+    padding: 9px 16px;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer; /* Indicate clickable interactive element */
+}
+
+.freq-btn.active,
+.freq-btn:hover{
+    background: #106652;
+    color: #ffffff; /* High contrast text on dark/brand backgrounds */
+    border-color: #106652;
+}
+
+.donation-section{
+    padding: 24px 24px 62px;
+    background: linear-gradient(to bottom, #f6fbf8 0%, #eef6f1 100%);
+}
+
+.donate-grid{
+    display: grid; /* Use grid layout for structured columns/rows */
+    grid-template-columns: repeat(3, minmax(220px, 1fr)); /* Three columns with a minimum readable card width */
+    gap: 22px;
+    max-width: 1100px;
+    margin: 0 auto; /* Center block horizontally */
+    padding: 0 24px;
+}
+
 .donate-card{
     background: #ffffff; /* White surface for readability and contrast */
-    display: grid; /* Use grid layout for structured columns/rows */
-    grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
+    display: flex; /* Use flexible layout for row/column alignment */
+    flex-direction: column; /* Stack children vertically in this container */
+    align-items: center; /* Align children in the cross axis center */
+    border-radius: 14px;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+    border: 1px solid #d6e7dc;
+    padding: 28px 22px 22px;
+    position: relative; /* Create positioning context for absolutely positioned children */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.donate-card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.1);
+}
+
+.donate-card-featured{
+    border: 2px solid #5a8a42;
+}
+
+.donate-badge{
+    position: absolute; /* Position element relative to nearest positioned ancestor */
+    top: -12px;
+    background: #5a8a42;
+    color: #ffffff; /* High contrast text on dark/brand backgrounds */
+    font-size: 12px;
+    font-weight: 700; /* Emphasize headings and primary actions */
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 999px;
+}
+
+.donate-icon{
+    margin: 0 0 10px; /* Remove default outer spacing */
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: inline-flex; /* Flex alignment while staying inline */
     align-items: center; /* Align children in the cross axis center */
     justify-content: center; /* Center children along main axis */
-    border-radius: 12px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-    border: 1px solid #d9e9dd;
-    padding: 28px 22px 22px;
-    max-width: 400px;
-    margin: 0 auto; /* Center block horizontally */
+    background: #e8f2ec;
+    color: #106652;
+    font-size: 24px;
+}
+
+.donate-card h3{
+    color: #106652;
+    margin: 8px 0 14px;
+    font-size: 34px;
+    text-align: center; /* Center-align section titles and callouts */
+}
+
+.donate-impact{
+    color: #42524e;
+    font-size: 15px;
+    margin: 0; /* Remove default outer spacing */
+    text-align: center; /* Center-align section titles and callouts */
+    min-height: 64px;
 }
 
 .donate-btn{
@@ -974,16 +1245,56 @@ section{
     color: #fff;
     border: none; /* Remove browser default border */
     border-radius: 9px;
-    height: 52px;
+    height: 50px;
     font-size: 16px; /* Comfortable default reading size */
     font-weight: 600;
     cursor: pointer; /* Indicate clickable interactive element */
-    margin: 30px auto 0;
-    width: 140px;
+    margin: 24px auto 0;
+    width: 100%; /* Stretch element to full container width */
+    max-width: 180px;
     align-items: center; /* Align children in the cross axis center */
     justify-content: center; /* Center children along main axis */
     display: flex; /* Use flexible layout for row/column alignment */
 }
+
+.donation-trust-bar{
+    max-width: 980px;
+    margin: 26px auto 0; /* Center block horizontally */
+    padding: 13px 16px;
+    border: 1px solid #cde0d4;
+    border-radius: 10px;
+    background: #f7fbf9;
+    display: flex; /* Use flexible layout for row/column alignment */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: center; /* Center children along main axis */
+    gap: 12px;
+    color: #46625b;
+    font-size: 14px; /* Keep body/control text compact and readable */
+}
+
+.donation-quote{
+    max-width: 760px;
+    margin: 24px auto 0; /* Center block horizontally */
+    padding: 0 18px;
+    text-align: center; /* Center-align section titles and callouts */
+    color: #3d5450;
+    font-style: italic;
+}
+
+.donation-cta-band{
+    margin: 0 24px 40px;
+    padding: 34px 22px;
+    border-radius: 14px;
+    background: linear-gradient(120deg, #106652, #2b7d6f);
+    text-align: center; /* Center-align section titles and callouts */
+    color: #ffffff; /* High contrast text on dark/brand backgrounds */
+}
+
+.donation-cta-band h2{
+    margin: 0 0 18px; /* Remove default outer spacing */
+    font-size: clamp(1.3rem, 2.8vw, 2rem);
+}
+
 .donate-btn:hover{
     background-color: #0d4d3b;
 }
@@ -1045,15 +1356,6 @@ img{
     padding: 0 24px;
 }
 
-.donate-grid{
-    display: grid; /* Use grid layout for structured columns/rows */
-    grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
-    gap: 22px;
-    max-width: 460px;
-    margin: 0 auto; /* Center block horizontally */
-    padding: 0 24px;
-}
-
 .contact-section{
     padding: 50px 0 70px;
 }
@@ -1073,8 +1375,13 @@ img{
 @media (max-width: 1024px){
     .card-grid,
     .about-gallery,
-    .membership-option{
+    .membership-option,
+    .donate-grid{
         grid-template-columns: repeat(2, minmax(0, 1fr)); /* Two balanced columns at medium breakpoints */
+    }
+
+    .google-works-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .events-preview{
@@ -1087,6 +1394,25 @@ img{
 }
 
 @media (max-width: 760px){
+    .donate-hero{
+        min-height: 42vh;
+        margin: 10px 14px 0;
+    }
+
+    .donation-section{
+        padding: 18px 14px 52px;
+    }
+
+    .donation-trust-bar{
+        flex-direction: column; /* Stack children vertically in this container */
+        align-items: center; /* Align children in the cross axis center */
+    }
+
+    .donation-cta-band{
+        margin: 0 14px 26px;
+        padding: 24px 16px;
+    }
+
     .header-inner{
         flex-direction: column; /* Stack children vertically in this container */
         align-items: center; /* Align children in the cross axis center */
@@ -1112,6 +1438,10 @@ img{
     .donate-grid,
     .footer .box-container{
         grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
+    }
+
+    .google-works-grid{
+        grid-template-columns: 1fr;
     }
 
     .events-preview > img{
