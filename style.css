@@ -1,33 +1,35 @@
+/* Global reset and base typography/colors shared across all pages. */
 *{
     box-sizing: border-box;
 }
 body{
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
     font-family: "Segoe UI",Arial, sans-serif;
     background: #f3f7f6;
     color: #1f2a2d;
-    line-height: 1.5;
+    line-height: 1.5; /* Improve text readability across long paragraphs */
 }
 
 a{
     color: inherit;
 }
 
+/* Header and top navigation used site-wide, including mobile menu button. */
 .site-header{
-    background: #ffffff;
-    border-bottom: 1px sold #9ec8cc;
+    background: #ffffff; /* White surface for readability and contrast */
+    border-bottom: 1px solid #9ec8cc;
     position: sticky;
-    top: 0;
-    z-index: 30;
+    top: 0; /* Keep header pinned to the top while scrolling */
+    z-index: 30; /* Ensure nav stays above page content */
 }
 .header-inner{
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1200px; /* Keep line length/layout readable on large screens */
+    margin: 0 auto; /* Center block horizontally */
     padding: 2px 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    display: flex; /* Use flexible layout for row/column alignment */
+    align-items: center; /* Align children in the cross axis center */
+    justify-content: space-between; /* Push first/last items to edges */
+    gap: 12px; /* Space between logo and navigation */
 }
 
 .brand-mark{
@@ -36,29 +38,29 @@ a{
 }
 
 .top-nav{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    align-items: center;
+    display: flex; /* Use flexible layout for row/column alignment */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: flex-end; /* Align items to the end of the main axis */
+    align-items: center; /* Align children in the cross axis center */
     gap: 6px;
 }
 
 .menu-toggle{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
+    display: inline-flex; /* Flex alignment while staying inline */
+    align-items: center; /* Align children in the cross axis center */
+    justify-content: center; /* Center children along main axis */
+    text-decoration: none; /* Remove default underline styling */
     display: none;
     width: 44px;
     height: 44px;
     border: 1px solid #9ec8cc;
-    border-radius: 6px;
-    background: #ffffff;
-    cursor: pointer;
-    padding: 0;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    border-radius: 6px; /* Subtle rounded corners */
+    background: #ffffff; /* White surface for readability and contrast */
+    cursor: pointer; /* Indicate clickable interactive element */
+    padding: 0; /* Remove default inner spacing */
+    align-items: center; /* Align children in the cross axis center */
+    justify-content: center; /* Center children along main axis */
+    flex-direction: column; /* Stack children vertically in this container */
     gap: 5px;
 }
 
@@ -66,17 +68,17 @@ a{
     width: 22px;
     height: 2px;
     background-color: #106652;
-    display: block;
+    display: block; /* Render element on its own line */
 }
 
 .top-nav a{
-    text-decoration: none;
+    text-decoration: none; /* Remove default underline styling */
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 14px; /* Keep body/control text compact and readable */
     letter-spacing: 0.5px;
-    font-weight: 700;
+    font-weight: 700; /* Emphasize headings and primary actions */
     padding: 8px 11px;
-    border-radius: 5px;
+    border-radius: 5px; /* Small corner rounding */
 }
 
 .top-nav a:hover,
@@ -84,39 +86,40 @@ a{
     background: rgba(255, 255, 255, 0.3);
 }
 
+/* Homepage hero block with image overlay to improve text contrast. */
 .hero{
-    display: grid;
+    display: grid; /* Use grid layout for structured columns/rows */
     place-items: center;
     background-image:url('images/gauravfkumar-water-4542012_1920.jpg');
     background-size: cover;
     background-position: center;
-    min-height: 72vh;
-    width: 100%;
+    min-height: 72vh; /* Hero fills most of the first viewport */
+    width: 100%; /* Stretch element to full container width */
     max-width: none;
-    margin: 0;
-    padding: 0;
-    position: relative;
+    margin: 0; /* Remove default outer spacing */
+    padding: 0; /* Remove default inner spacing */
+    position: relative; /* Create positioning context for absolutely positioned children */
 }
 
 .hero-overlay{
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(9,36,42, 0.3), rgba(9,36,42, 0.66));
+    position: absolute; /* Position element relative to nearest positioned ancestor */
+    inset: 0; /* Stretch absolutely positioned overlay to all four edges */
+    background: linear-gradient(to bottom, rgba(9,36,42, 0.3), rgba(9,36,42, 0.66)); /* Darken image for legible text */
 }
 
 .hero-content{
-    position: relative;
-    z-index: 1;
+    position: relative; /* Create positioning context for absolutely positioned children */
+    z-index: 1; /* Layer element above its background overlay */
     width: min(900px, 100%);
     max-width: 900px;
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
     color: #fff;
     padding: 30px 20px;
 }
 
 .hero h1{
     font-size: clamp(2rem, 4vw, 3.4rem);
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
     text-shadow: 2px 2px 6px black;
 }
 
@@ -129,54 +132,56 @@ a{
 
 .btn-join{
     background-color: #167e68;
-    color: white;
+    color: white; /* High contrast text on dark/brand backgrounds */
     border: 2px solid #167e68;
-    border-radius: 5px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
+    border-radius: 5px; /* Small corner rounding */
+    display: inline-flex; /* Flex alignment while staying inline */
+    align-items: center; /* Align children in the cross axis center */
+    justify-content: center; /* Center children along main axis */
+    text-decoration: none; /* Remove default underline styling */
     padding: 9px 13px;
-    font-weight: 700px;
-    cursor: pointer;
-    font-size: 14px;
+    font-weight: 700; /* Emphasize headings and primary actions */
+    cursor: pointer; /* Indicate clickable interactive element */
+    font-size: 14px; /* Keep body/control text compact and readable */
 }
 .btn-join:hover{
     background-color: #106652;
 }
 
 .btn1{
-    display: inline-block;
-    text-decoration: none;
-    border-radius: 6px;
+    border: 2px solid #167e68;
+    display: inline-block; /* Keep inline flow while allowing box sizing */
+    text-decoration: none; /* Remove default underline styling */
+    border-radius: 6px; /* Subtle rounded corners */
     padding: 11px 18px;
-    font-weight: 700px;
+    font-weight: 700; /* Emphasize headings and primary actions */
     background: #167e68;
-    color: white;
+    color: white; /* High contrast text on dark/brand backgrounds */
     text-shadow: 2px 2px 6px black;
 }
 
-.btn1 :hover{
+.btn1:hover{
     background: #106652;
 }
 
 .btn2{
     border: 2px solid #fff;
     color: #fff;
-    display: inline-block;
-    text-decoration: none;
-    border-radius: 6px;
+    display: inline-block; /* Keep inline flow while allowing box sizing */
+    text-decoration: none; /* Remove default underline styling */
+    border-radius: 6px; /* Subtle rounded corners */
     padding: 11px 18px;
-    font-weight: 700px;
+    font-weight: 700; /* Emphasize headings and primary actions */
     text-shadow: 2px 2px 6px black;
 }
 .btn2:hover{
     background: rgba(255, 255, 255, 0.2);
 }
 
+/* Shared content spacing plus reusable card grid components. */
 section{
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1200px; /* Keep line length/layout readable on large screens */
+    margin: 0 auto; /* Center block horizontally */
     padding: 64px 18px;
 }
 
@@ -187,7 +192,7 @@ section{
 }
 
 .intro p{
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
     font-size: 1.05rem;
 }
 
@@ -196,23 +201,23 @@ section{
 }
 
 .card-grid{
-    display: grid;
-    grid-template-columns: repeat( 3, minmax(0, 1fr));
-    gap: 18px;
+    display: grid; /* Use grid layout for structured columns/rows */
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* Three equal flexible columns on desktop */
+    gap: 18px; /* Consistent spacing between cards/items */
 }
 
 .card{
     background: #fff;
     border: 1px solid #dde7e6;
     border-radius: 10px;
-    overflow: hidden;
+    overflow: hidden; /* Clip overflowing child content */
 }
 
 .card img{
-    width: 100%;
+    width: 100%; /* Stretch element to full container width */
     height: 220px;
-    object-fit: cover;
-    display: block;
+    object-fit: cover; /* Fill container while preserving image aspect ratio */
+    display: block; /* Render element on its own line */
 }
 
 .card-body{
@@ -226,15 +231,15 @@ section{
 }
 
 .card-body p{
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
     color: #45585c;
 }
 
 .events-preview{
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: 24px;
-    align-items: center;
+    display: grid; /* Use grid layout for structured columns/rows */
+    grid-template-columns: 1.1fr 1fr; /* Slightly wider text column with supporting media column */
+    gap: 24px; /* Consistent spacing between layout children */
+    align-items: center; /* Align children in the cross axis center */
 }
 
 .events-copy ul{
@@ -242,14 +247,15 @@ section{
     padding-left: 20px;
 }
 
+/* Footer layout with contact columns and social links. */
 .footer .box-container{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    display: grid; /* Use grid layout for structured columns/rows */
+    grid-template-columns: repeat(3, minmax(220px, 1fr)); /* Three columns with a minimum readable card width */
     gap: 40px;
 }
 
 .footer .box-container .box{
-    display: block;
+    display: block; /* Render element on its own line */
     margin-top: 0;
     color: #7a7a7a;
     padding-right: 0;
@@ -263,19 +269,19 @@ section{
 
 .footer .box-container .box p{
     color: #7a7a7a;
-    font-size: 14px;
+    font-size: 14px; /* Keep body/control text compact and readable */
     line-height: 1.8;
     padding: 4px 0;
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
     text-align: left;
 }
 
 .footer .box-container .box a{
-    display: block;
+    display: block; /* Render element on its own line */
     color: #7a7a7a;
-    font-size: 14px;
+    font-size: 14px; /* Keep body/control text compact and readable */
     padding: 6px 0;
-    text-decoration: none;
+    text-decoration: none; /* Remove default underline styling */
 }
 
 .footer .box-container .box a:hover{
@@ -283,28 +289,28 @@ section{
     text-decoration: underline;
 }
 .footer{
-    background-color: #ffffff;
+    background-color: #ffffff; /* High contrast text on dark/brand backgrounds */
     border-top: 2px solid #e0e0e0;
     padding: 40px 32px 24px;
 }
 
 .footer-bottom{
-    display: flex;
+    display: flex; /* Use flexible layout for row/column alignment */
     align-items: flex-end;
-    justify-content: space-between;
+    justify-content: space-between; /* Push first/last items to edges */
     gap: 20px;
     margin-top: 30px;
     padding-top: 20px;
     border-top: 1px solid #e0e0e0;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
 }
 
 .footer-bottom p{
     text-align: right;
     color: #7a7a7a;
-    font-size: 14px;
-    padding: 0;
-    margin: 0;
+    font-size: 14px; /* Keep body/control text compact and readable */
+    padding: 0; /* Remove default inner spacing */
+    margin: 0; /* Remove default outer spacing */
 }
 
 .footer .social h3{
@@ -312,11 +318,11 @@ section{
 }
 
 .footer .social a{
-    display: inline-block;
+    display: inline-block; /* Keep inline flow while allowing box sizing */
     margin-right: 12px;
     color: #7a7a7a;
     font-size: 28px;
-    padding: 0;
+    padding: 0; /* Remove default inner spacing */
 }
 
 .footer .social a:hover{
@@ -325,7 +331,7 @@ section{
 
 @media(max-width: 900px){
     .footer .box-container{
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
         gap: 20px;
     }
 
@@ -337,28 +343,30 @@ section{
         text-align: left;
     }
 }
+
+/* What We Do page: gallery, copy panel, and process intro styles. */
 .about-showcase{
     padding-top: 28px;
 }
 
 .about-gallery{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: grid; /* Use grid layout for structured columns/rows */
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* Three equal flexible columns on desktop */
     gap: 16px;
     margin-bottom: 26px;
 }
 
 .about-gallery img{
-    width: 100%;
+    width: 100%; /* Stretch element to full container width */
     height: 280px;
-    object-fit: cover;
+    object-fit: cover; /* Fill container while preserving image aspect ratio */
     border-radius: 10px;
     border: 1px solid #dde7e6;
-    display: block;
+    display: block; /* Render element on its own line */
 }
 
 .about-copy{
-    background: #ffffff;
+    background: #ffffff; /* White surface for readability and contrast */
     border: 1px solid #dde7e6;
     border-radius: 12px;
     padding: 26px;
@@ -384,7 +392,7 @@ section{
 
 .about-membership-link a{
     color: #167e68;
-    font-weight: 700;
+    font-weight: 700; /* Emphasize headings and primary actions */
 }
 
 .about-membership-link a:hover{
@@ -395,6 +403,7 @@ section{
     padding-top: 0;
 }
 
+/* Events page cards and progressive-load button styles. */
 .events-home{
     background: linear-gradient(to bottom,
     #cfe3d4 0%,
@@ -408,14 +417,14 @@ section{
 
 .upcoming-event{
     color: #106652;
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
     font-size: 36px;
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
     padding: 40px 0 20px;
 }
 
 .events-p{
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
     color: #106652;
     margin: 0 0 30px;
     font-size: 18px;
@@ -424,9 +433,9 @@ section{
 .events-grid{
     display:flex;
     gap: 30px;
-    justify-content: center;
+    justify-content: center; /* Center children along main axis */
     padding: 0 40 60px;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
     background: linear-gradient(to bottom,
     #cfe3d4 0%,
     #eaf4ee 60%,
@@ -435,8 +444,8 @@ section{
 }
 
 .events-card{
-    background: #ffffff;
-    border-radius: 8px;
+    background: #ffffff; /* White surface for readability and contrast */
+    border-radius: 8px; /* Soften corners for a friendlier UI */
     box-shadow: 0 6px 16px rgba( 0, 0, 0, 0.08);
     padding: 20px;
     max-width: 360px;
@@ -444,52 +453,52 @@ section{
 }
 
 .events-card img{
-    width: 100%;
-    border-radius: 6px;
-    object-fit: cover;
+    width: 100%; /* Stretch element to full container width */
+    border-radius: 6px; /* Subtle rounded corners */
+    object-fit: cover; /* Fill container while preserving image aspect ratio */
     height: 200px;
 }
 
 .events-text {
     color: #106652;
-    font-size: 14px;
+    font-size: 14px; /* Keep body/control text compact and readable */
     margin: 6px 0 10px;
 }
 
 .events-text1{
     color: #106652;
-    font-size: 14px;
+    font-size: 14px; /* Keep body/control text compact and readable */
     margin: 0 0 16px;
 }
 
 .btn-event{
     background-color: #106652;
-    border: none;
-    border-radius: 5px;
+    border: none; /* Remove browser default border */
+    border-radius: 5px; /* Small corner rounding */
     padding: 10px 14px;
-    cursor: pointer;
+    cursor: pointer; /* Indicate clickable interactive element */
 }
 
 .btn-event a{
-    color: white;
-    text-decoration: none;
+    color: white; /* High contrast text on dark/brand backgrounds */
+    text-decoration: none; /* Remove default underline styling */
 }
 
 .events-load-more-wrap{
-    display: flex;
-    justify-content: center;
+    display: flex; /* Use flexible layout for row/column alignment */
+    justify-content: center; /* Center children along main axis */
     margin-top: 28px;
 }
 
 .events-load-more{
     background-color: #106652;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
+    color: #ffffff; /* High contrast text on dark/brand backgrounds */
+    border: none; /* Remove browser default border */
+    border-radius: 6px; /* Subtle rounded corners */
     padding: 12px 24px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
+    font-size: 16px; /* Comfortable default reading size */
+    font-weight: 700; /* Emphasize headings and primary actions */
+    cursor: pointer; /* Indicate clickable interactive element */
 }
 
 .events-load-more:hover{
@@ -498,7 +507,7 @@ section{
 
 .events-p{
     color: black;
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
     font-size: 20px;
     padding-bottom: 40px;
     padding-top: 20px;
@@ -506,32 +515,32 @@ section{
 }
 
 .events-card img{
-    width: 100%;
-    border-radius: 8px;
+    width: 100%; /* Stretch element to full container width */
+    border-radius: 8px; /* Soften corners for a friendlier UI */
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08); 
 }
 .events-grid{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    display: grid; /* Use grid layout for structured columns/rows */
+    grid-template-columns: repeat(3, minmax(220px, 1fr)); /* Three columns with a minimum readable card width */
     gap: 30px;
     padding: 0 60px;
     background-color: #FDF6F6;
-    border-radius: 8px;
+    border-radius: 8px; /* Soften corners for a friendlier UI */
 }
 
 .events-grid--more{
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
     max-width: 760px;
-    margin: 0 auto;
+    margin: 0 auto; /* Center block horizontally */
 }
 
 .events-grid--more .events-card{
-    max-width: 100%;
+    max-width: 100%; /* Stretch element to full container width */
 }
 
 .events-load-more-wrap{
-    display: flex;
-    justify-content: center;
+    display: flex; /* Use flexible layout for row/column alignment */
+    justify-content: center; /* Center children along main axis */
     margin: 28px 0;
 }
 .btn-event:hover{
@@ -541,53 +550,54 @@ section{
     color: #106652;
     margin: 10px 0 8px;
     font-size: 18px;
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
 }
 
 .events-card p{
     color: black;
-    font-size: 14px;
+    font-size: 14px; /* Keep body/control text compact and readable */
     padding: 0 10px;
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
 }
 
 .btn-event{
     background-color: #106652;
-    color: white;
-    border: none;
+    color: white; /* High contrast text on dark/brand backgrounds */
+    border: none; /* Remove browser default border */
     width: 100px;
     height: 45px;
-    border-radius: 5px;
+    border-radius: 5px; /* Small corner rounding */
 }
 .btn-event a{
-    color: white;
-    text-decoration: none;
+    color: white; /* High contrast text on dark/brand backgrounds */
+    text-decoration: none; /* Remove default underline styling */
 }
 
 
+/* Contact page split layout and form controls. */
 .contact-section{
     padding: 50px 0 100px 50px;
 }
 
 .contact-section .section-title{
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
     color: #106652;
     font-size: 36px;
     padding-bottom: 20px;
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
 }
 .contact-section .section-subtitle{
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
     color: black;
-    font-size: 16px;
+    font-size: 16px; /* Comfortable default reading size */
     padding: 40px;
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
 }
 
 .contact-section .section-contect{
-    display: flex;
+    display: flex; /* Use flexible layout for row/column alignment */
     gap: 60px;
-    max-width: 1200px;
+    max-width: 1200px; /* Keep line length/layout readable on large screens */
 }
 .contact-left{
     flex: 1;
@@ -600,19 +610,19 @@ section{
     color: #106652;
     font-size: 24px;
     padding: 0 0 20px 0;
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
 }
 .contact-section .contact-info-list{
     margin-top: 30px;
     margin-left: 0;
-    display: flex;
-    flex-direction: column;
+    display: flex; /* Use flexible layout for row/column alignment */
+    flex-direction: column; /* Stack children vertically in this container */
     text-align: left;
     gap: 10px;
     padding-left: 0;
 }
 .contact-section .contact-info-list .contact-info{
-    display: flex;
+    display: flex; /* Use flexible layout for row/column alignment */
     align-items:  center;
     gap: 16px;
     margin-bottom: 30px 0;
@@ -622,60 +632,60 @@ section{
     color: #106652;
     font-size: 24px;
     padding: 0 0 20px 0;
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
 }
 .contact-section .contact-info-list{
     margin-top: 30px;
     margin-left: 0;
-    display: flex;
-    flex-direction: column;
+    display: flex; /* Use flexible layout for row/column alignment */
+    flex-direction: column; /* Stack children vertically in this container */
     text-align: left;
     gap: 10px;
     padding-left: 0;
 }
 .contact-section .contact-info-list .contact-info{
-    display: flex;
-    align-items: center;
+    display: flex; /* Use flexible layout for row/column alignment */
+    align-items: center; /* Align children in the cross axis center */
     gap: 16px;
     margin-bottom: 30px 0;
 }
 .contact-section .contact-info-list .contact-info p{
     color: #106652;
-    font-size: 16px;
+    font-size: 16px; /* Comfortable default reading size */
 }
 .social-buttons{
-    display: flex;
+    display: flex; /* Use flexible layout for row/column alignment */
     gap: 15px;
-    justify-content: flex-start;
+    justify-content: flex-start; /* Align items to the start of the main axis */
     margin-top: 30px;
 }
 
 .social-btn{
     background-color: #106652;
-    color: white;
-    display: inline-block;
+    color: white; /* High contrast text on dark/brand backgrounds */
+    display: inline-block; /* Keep inline flow while allowing box sizing */
     min-width: 120px;
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
     padding: 14px 24px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 14px;
+    border-radius: 8px; /* Soften corners for a friendlier UI */
+    text-decoration: none; /* Remove default underline styling */
+    font-size: 14px; /* Keep body/control text compact and readable */
     font-weight: bold;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s; /* Smooth hover/focus color transitions */
 }
 .social-btn:hover{
     background-color: #145c4f;
 }
 .contact-form{
-    display: flex;
-    flex-direction: column;
+    display: flex; /* Use flexible layout for row/column alignment */
+    flex-direction: column; /* Stack children vertically in this container */
     gap: 15px;
 }
 .form-input{
     padding: 12px;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
+    border-radius: 5px; /* Small corner rounding */
+    font-size: 14px; /* Keep body/control text compact and readable */
     font-family: Arial, sans-serif;
 }
 .form-input::placeholder{
@@ -683,19 +693,21 @@ section{
 }
 .form-btn{
     background-color: #106652;
-    color: white;
-    width: 100%;
+    color: white; /* High contrast text on dark/brand backgrounds */
+    width: 100%; /* Stretch element to full container width */
     padding: 14px 30px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border: none; /* Remove browser default border */
+    border-radius: 5px; /* Small corner rounding */
+    font-size: 16px; /* Comfortable default reading size */
     font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    cursor: pointer; /* Indicate clickable interactive element */
+    transition: background-color 0.3s; /* Smooth hover/focus color transitions */
 }
 .form-btn:hover{
     background-color: #145c4f;
 }
+
+/* Membership page pricing cards and signup form. */
 .membership-home{
     background: linear-gradient(to bottom,
     #cfe3d4 0%,
@@ -705,11 +717,11 @@ section{
 }
 
 .membership-title{
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
     color: #106652;
     font-size: 36px;
     padding: 50px 0 12px;
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
 }
 
 .membership-section{
@@ -717,31 +729,31 @@ section{
 }
 
 .membership-description{
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
     color: black;
     font-size: 18px;
     padding: 0 20px 40px;
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
 }
 
 .membership-option{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: grid; /* Use grid layout for structured columns/rows */
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* Three equal flexible columns on desktop */
     gap: 22px;
     max-width: 1100px;
-    margin: 0 auto;
+    margin: 0 auto; /* Center block horizontally */
 }
 
 .membership-card{
-    background: #ffffff;
+    background: #ffffff; /* White surface for readability and contrast */
     border-radius: 12px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
     border: 1px solid #d9e9dd;
     padding: 28px 22px 22px;
-    position: relative;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
+    position: relative; /* Create positioning context for absolutely positioned children */
+    text-align: center; /* Center-align section titles and callouts */
+    display: flex; /* Use flexible layout for row/column alignment */
+    flex-direction: column; /* Stack children vertically in this container */
 }
 
 .membership-option .membership-card h3{
@@ -752,9 +764,9 @@ section{
 
 .membership-option .membership-card p{
     color: #106652;
-    font-size: 16px;
-    padding: 0;
-    margin: 0;
+    font-size: 16px; /* Comfortable default reading size */
+    padding: 0; /* Remove default inner spacing */
+    margin: 0; /* Remove default outer spacing */
 }
 
 .membership-price strong{
@@ -764,20 +776,20 @@ section{
 }
 
 .membership-price{
-    margin-bottom: 26px !important;
-    color: #4f5d58 !important;
-    font-size: 18px !important;
+    margin-bottom: 26px;
+    color: #4f5d58;
+    font-size: 18px;
     font-weight: 500;
 }
 
 .membership-option .membership-include{
-    display: block;
+    display: block; /* Render element on its own line */
     list-style: none;
-    margin: 0;
-    padding: 0;
+    margin: 0; /* Remove default outer spacing */
+    padding: 0; /* Remove default inner spacing */
     text-align: left;
     color: #4f5d58;
-    font-size: 14px;
+    font-size: 14px; /* Keep body/control text compact and readable */
 }
 
 .membership-option .membership-include li{
@@ -797,12 +809,12 @@ section{
     align-self: center;
     background-color: #5A8A42;
     color: #fff;
-    border: none;
-    border-radius: 8px;
+    border: none; /* Remove browser default border */
+    border-radius: 8px; /* Soften corners for a friendlier UI */
     height: 52px;
-    font-size: 16px;
+    font-size: 16px; /* Comfortable default reading size */
     font-weight: 600;
-    cursor: pointer;
+    cursor: pointer; /* Indicate clickable interactive element */
 }
 
 .membership-button:hover,
@@ -813,14 +825,14 @@ section{
 
 .membership-form-section{
     max-width: 1100px;
-    margin: 0 auto;
+    margin: 0 auto; /* Center block horizontally */
     padding: 0 24px 70px;
 }
 
 .membership-form-card{
     background: #f1f1f1;
     border: 1px solid #d8dedb;
-    border-radius: 8px;
+    border-radius: 8px; /* Soften corners for a friendlier UI */
     padding: 26px;
 }
 
@@ -832,26 +844,26 @@ section{
 }
 
 .membership-form{
-    display: flex;
-    flex-direction: column;
+    display: flex; /* Use flexible layout for row/column alignment */
+    flex-direction: column; /* Stack children vertically in this container */
     gap: 16px;
 }
 
 .membership-form-row{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: grid; /* Use grid layout for structured columns/rows */
+    grid-template-columns: 1fr 1fr; /* Two equal columns for side-by-side form fields */
     gap: 16px;
 }
 
 .membership-form-input{
-    width: 100%;
+    width: 100%; /* Stretch element to full container width */
     min-height: 58px;
     padding: 14px 16px;
     border: 1px solid #c2c7c4;
-    border-radius: 6px;
-    font-size: 14px;
+    border-radius: 6px; /* Subtle rounded corners */
+    font-size: 14px; /* Keep body/control text compact and readable */
     color: #3d4240;
-    background: #ffffff;
+    background: #ffffff; /* White surface for readability and contrast */
 }
 
 .membership-form-input::placeholder{
@@ -868,13 +880,13 @@ section{
     align-self: flex-start;
     min-width: 180px;
     height: 52px;
-    border: none;
-    border-radius: 8px;
+    border: none; /* Remove browser default border */
+    border-radius: 8px; /* Soften corners for a friendlier UI */
     background: #106652;
     color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
+    font-size: 16px; /* Comfortable default reading size */
+    font-weight: 700; /* Emphasize headings and primary actions */
+    cursor: pointer; /* Indicate clickable interactive element */
 }
 
 .membership-form-submit:hover{
@@ -884,7 +896,7 @@ section{
 
 @media (max-width: 760px){
     .membership-option{
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
     }
 
     .membership-form-section{
@@ -900,30 +912,31 @@ section{
     }
 
     .membership-form-row{
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
         gap: 12px;
     }
 
     .membership-form-input{
         min-height: 52px;
-        font-size: 14px;
+        font-size: 14px; /* Keep body/control text compact and readable */
     }
 }
 
+/* Donate page card stack and call-to-action button. */
 .donation-title{
     color: #106652;
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
     font-size: 36px;
     padding: 50px 0 12px;
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
 }
 
 .donation-subtitle {
     color: #7a7a7a;
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
     font-size: 18px;
     padding: 0 20px 40px;
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
 }
 .donation-section{
     padding: 10px 24px 70px;
@@ -932,44 +945,44 @@ section{
     color: #106652;
     margin: 8px 0 20px;
     font-size: 24px;
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
 }
 
 .donate-card p{
     color: #106652;
     font-size: 15px;
-    padding: 0;
-    margin: 0;
-    text-align: center;
+    padding: 0; /* Remove default inner spacing */
+    margin: 0; /* Remove default outer spacing */
+    text-align: center; /* Center-align section titles and callouts */
 }
 .donate-card{
-    background: #ffffff;
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-    justify-content: center;
+    background: #ffffff; /* White surface for readability and contrast */
+    display: grid; /* Use grid layout for structured columns/rows */
+    grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
+    align-items: center; /* Align children in the cross axis center */
+    justify-content: center; /* Center children along main axis */
     border-radius: 12px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
     border: 1px solid #d9e9dd;
     padding: 28px 22px 22px;
     max-width: 400px;
-    margin: 0 auto;
+    margin: 0 auto; /* Center block horizontally */
 }
 
 .donate-btn{
     background-color: #106652;
     color: #fff;
-    border: none;
+    border: none; /* Remove browser default border */
     border-radius: 9px;
     height: 52px;
-    font-size: 16px;
+    font-size: 16px; /* Comfortable default reading size */
     font-weight: 600;
-    cursor: pointer;
+    cursor: pointer; /* Indicate clickable interactive element */
     margin: 30px auto 0;
     width: 140px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+    align-items: center; /* Align children in the cross axis center */
+    justify-content: center; /* Center children along main axis */
+    display: flex; /* Use flexible layout for row/column alignment */
 }
 .donate-btn:hover{
     background-color: #0d4d3b;
@@ -980,17 +993,18 @@ section{
     text-align: left;
     font-size: 18px;
     padding: 0 20px 40px;
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
 }
 
 .heritage-list li{
     color: black;
     line-height: 1.5;
-    font-size: 16px;
+    font-size: 16px; /* Comfortable default reading size */
 }
 
+/* Global refinements and responsive overrides for shared sections. */
 img{
-    max-width: 100%;
+    max-width: 100%; /* Stretch element to full container width */
     height: auto;
 }
 
@@ -1009,34 +1023,34 @@ img{
 
 .hero-actions{
     margin-top: 26px;
-    display: flex;
-    justify-content: center;
+    display: flex; /* Use flexible layout for row/column alignment */
+    justify-content: center; /* Center children along main axis */
     gap: 12px;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
 }
 
 .events-preview > img{
-    width: 100%;
+    width: 100%; /* Stretch element to full container width */
     height: 360px;
-    object-fit: cover;
+    object-fit: cover; /* Fill container while preserving image aspect ratio */
     border-radius: 12px;
     border: 1px solid #dde7e6;
-    display: block;
+    display: block; /* Render element on its own line */
 }
 
 .events-grid{
-    max-width: 1200px;
-    margin: 0 auto;
-    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    max-width: 1200px; /* Keep line length/layout readable on large screens */
+    margin: 0 auto; /* Center block horizontally */
+    grid-template-columns: repeat(3, minmax(220px, 1fr)); /* Three columns with a minimum readable card width */
     padding: 0 24px;
 }
 
 .donate-grid{
-    display: grid;
-    grid-template-columns: 1fr;
+    display: grid; /* Use grid layout for structured columns/rows */
+    grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
     gap: 22px;
     max-width: 460px;
-    margin: 0 auto;
+    margin: 0 auto; /* Center block horizontally */
     padding: 0 24px;
 }
 
@@ -1045,42 +1059,42 @@ img{
 }
 
 .contact-section .section-contect{
-    display: flex;
+    display: flex; /* Use flexible layout for row/column alignment */
     gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1200px; /* Keep line length/layout readable on large screens */
+    margin: 0 auto; /* Center block horizontally */
     padding: 0 24px;
 }
 
 .social-buttons{
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
 }
 
 @media (max-width: 1024px){
     .card-grid,
     .about-gallery,
     .membership-option{
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* Two balanced columns at medium breakpoints */
     }
 
     .events-preview{
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
     }
 
     .contact-section .section-contect{
-        flex-direction: column;
+        flex-direction: column; /* Stack children vertically in this container */
     }
 }
 
 @media (max-width: 760px){
     .header-inner{
-        flex-direction: column;
-        align-items: center;
+        flex-direction: column; /* Stack children vertically in this container */
+        align-items: center; /* Align children in the cross axis center */
         gap: 10px;
     }
 
     .top-nav{
-        justify-content: center;
+        justify-content: center; /* Center children along main axis */
     }
 
     .top-nav a{
@@ -1097,7 +1111,7 @@ img{
     .membership-option,
     .donate-grid,
     .footer .box-container{
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
     }
 
     .events-preview > img{
@@ -1137,26 +1151,27 @@ img{
     .membership-button,
     .membership-button1,
     .membership-button2{
-        width: 100%;
+        width: 100%; /* Stretch element to full container width */
         max-width: 280px;
     }
 }
 
+/* News page grid layout and load-more styling. */
 .container-news{
     max-width: fit-content;
-    margin: 0 auto;
+    margin: 0 auto; /* Center block horizontally */
     padding: 0 24px;
 }
 
 .container-header{
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
     margin-bottom: 40px;
 }
 
 .news-subtitle{
     color: #7a7a7a;
     font-size: 18px;
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
     padding: 0 20px;
 }
 
@@ -1168,34 +1183,34 @@ img{
 }
 
 .news-grid{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    display: grid; /* Use grid layout for structured columns/rows */
+    grid-template-columns: repeat(3, minmax(220px, 1fr)); /* Three columns with a minimum readable card width */
     gap: 30px;
     padding: 0 60px;
     background-color: #FDF6F6;
-    border-radius: 8px;
+    border-radius: 8px; /* Soften corners for a friendlier UI */
     margin-bottom: 40px;
 }
 .news-grid--more{
-    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    grid-template-columns: repeat(3, minmax(220px, 1fr)); /* Three columns with a minimum readable card width */
 }
 .news-grid--more .news-card{
-    max-width: 100%;
+    max-width: 100%; /* Stretch element to full container width */
 }
 .news-load-more-wrap{
-    display: flex;
-    justify-content: center;
+    display: flex; /* Use flexible layout for row/column alignment */
+    justify-content: center; /* Center children along main axis */
     margin: 24px 0 32px;
 }
 .news-load-more{
     background-color: #106652;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
+    color: #ffffff; /* High contrast text on dark/brand backgrounds */
+    border: none; /* Remove browser default border */
+    border-radius: 6px; /* Subtle rounded corners */
     padding: 12px 24px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
+    font-size: 16px; /* Comfortable default reading size */
+    font-weight: 700; /* Emphasize headings and primary actions */
+    cursor: pointer; /* Indicate clickable interactive element */
 }
 .news-load-more:hover{
     background-color: #145c4f;
@@ -1203,41 +1218,41 @@ img{
 
 .btn-news{
     background-color: #106652;
-    color: white;
-    border: none;
+    color: white; /* High contrast text on dark/brand backgrounds */
+    border: none; /* Remove browser default border */
     width: 100px;
     height: 45px;
-    border-radius: 5px;
-    cursor: pointer;
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
+    border-radius: 5px; /* Small corner rounding */
+    cursor: pointer; /* Indicate clickable interactive element */
+    position: relative; /* Create positioning context for absolutely positioned children */
+    display: inline-flex; /* Flex alignment while staying inline */
+    align-items: center; /* Align children in the cross axis center */
+    justify-content: center; /* Center children along main axis */
+    text-decoration: none; /* Remove default underline styling */
 }
 
 .btn-event a,
 .btn-news{
-    color: white;
-    text-decoration: none;
+    color: white; /* High contrast text on dark/brand backgrounds */
+    text-decoration: none; /* Remove default underline styling */
 }
 
 .btn-news:hover{
     background-color: #145c4f;
 }
 .news-card{
-    background: #ffffff;
-    border-radius: 8px;
+    background: #ffffff; /* White surface for readability and contrast */
+    border-radius: 8px; /* Soften corners for a friendlier UI */
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
     border: 1px solid #d9e9dd;
     padding: 20px;
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
 }
 
 .news-card img{
-    width: 100%;
+    width: 100%; /* Stretch element to full container width */
     border-radius: 9px;
-    object-fit: cover;
+    object-fit: cover; /* Fill container while preserving image aspect ratio */
     height: 200px;
 }
 
@@ -1249,36 +1264,37 @@ img{
 
 @media (max-width: 900px){
     .news-grid{
-        grid-template-columns: repeat(2, minmax(220px, 1fr));
+        grid-template-columns: repeat(2, minmax(220px, 1fr)); /* Two-card layout while preserving minimum card width */
         padding: 0 24px;
     }
 
     .news-grid--more{
-        grid-template-columns: repeat(2, minmax(220px, 1fr));
+        grid-template-columns: repeat(2, minmax(220px, 1fr)); /* Two-card layout while preserving minimum card width */
     }
 }
 
 @media (max-width: 600px){
     .news-grid{
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
         padding: 0 12px;
     }
 
     .news-grid--more{
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
     }
 }
 
+/* Dropdown navigation behavior for desktop hover menus. */
 .dropbtn{
-    background-color: #ffffff;
+    background-color: #ffffff; /* High contrast text on dark/brand backgrounds */
     padding: 0 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
+    border: none; /* Remove browser default border */
+    cursor: pointer; /* Indicate clickable interactive element */
+    border-radius: 5px; /* Small corner rounding */
     min-height: 34px;
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
+    display: inline-flex; /* Flex alignment while staying inline */
+    align-items: center; /* Align children in the cross axis center */
+    text-decoration: none; /* Remove default underline styling */
 }
 
 .dropbtn:hover{
@@ -1286,18 +1302,18 @@ img{
 }
 
 .dropdown-menu a{
-    display: flex;
+    display: flex; /* Use flexible layout for row/column alignment */
     padding: 0 10px;
     min-height: 34px;
-    align-items: center;
-    text-decoration: none;
+    align-items: center; /* Align children in the cross axis center */
+    text-decoration: none; /* Remove default underline styling */
 }
 
 .top-nav .dropbtn,
 .top-nav .dropdown-menu a{
     color: #106652;
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 14px; /* Keep body/control text compact and readable */
+    font-weight: 700; /* Emphasize headings and primary actions */
 }
 
 .dropdown-menu a:hover{
@@ -1306,30 +1322,31 @@ img{
 
 .droplist .dropdown-menu {
     background-color: #ffffffe3;
-    position: absolute;
+    position: absolute; /* Position element relative to nearest positioned ancestor */
     min-width: 150px;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
     padding: 4px 0;
     gap: 4px;
-    flex-direction: column;
-    display: none;
-    z-index: 1;
+    flex-direction: column; /* Stack children vertically in this container */
+    display: none; /* Hidden by default; shown on hover */
+    z-index: 1; /* Layer element above its background overlay */
 }
 .droplist:hover .dropdown-menu {
-    display: flex;
+    display: flex; /* Use flexible layout for row/column alignment */
 }
 
+/* Conservation page hero and supporting copy/gallery sections. */
 .conservation-section{
     padding: 40px 0 60px;
     background-image: url(images/garden-tour1.jpg);
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
     background-size: cover;
     background-position: center;
-    position: relative;
+    position: relative; /* Create positioning context for absolutely positioned children */
 }
 
 .conservation-content p{
-    color: #ffffff;
+    color: #ffffff; /* High contrast text on dark/brand backgrounds */
     font-size: 18px;
     margin: 0 0 20px;
     font-family: "Segoe UI",Arial, sans-serif;
@@ -1338,7 +1355,7 @@ img{
 }
 
 .conservation-content h2{
-    color: #ffffff;
+    color: #ffffff; /* High contrast text on dark/brand backgrounds */
     font-size: 36px;
     margin: 0 0 20px;
     text-shadow: 2px 2px 6px black;
@@ -1348,7 +1365,7 @@ img{
     color:#106652;
     font-size: 32px;
     margin: 0 0 20px;
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
 }
 .conservation-text {
     color: #106652;
@@ -1360,7 +1377,7 @@ img{
 
 .conservation-info-content li{
     color: #106652;
-    font-size: 16px;
+    font-size: 16px; /* Comfortable default reading size */
     line-height: 1.5;
     font-family: "Segoe UI",Arial, sans-serif;
 }
@@ -1370,16 +1387,16 @@ img{
 }
 
 .gallery-grid{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(280px, 1fr));
+    display: grid; /* Use grid layout for structured columns/rows */
+    grid-template-columns: repeat(3, minmax(280px, 1fr)); /* Wide gallery cards in three desktop columns */
     gap: 34px;
     padding: 0 60px 40px;
     align-items: stretch;
 }
 
 .gallery-link{
-    display: block;
-    overflow: hidden;
+    display: block; /* Render element on its own line */
+    overflow: hidden; /* Clip overflowing child content */
     border-radius: 14px;
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -1391,22 +1408,22 @@ img{
 }
 
 .gallery-link img{
-    width: 100%;
+    width: 100%; /* Stretch element to full container width */
     height: 300px;
-    object-fit: cover;
-    display: block;
+    object-fit: cover; /* Fill container while preserving image aspect ratio */
+    display: block; /* Render element on its own line */
 }
 
 @media(max-width: 980px){
     .gallery-grid{
-        grid-template-columns: repeat(2, minmax(240px, 1fr));
+        grid-template-columns: repeat(2, minmax(240px, 1fr)); /* Medium-screen gallery switches to two columns */
         padding: 0 24px 32px;
     }
 }
 
 @media(max-width: 640px){
     .gallery-grid{
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
         gap: 20px;
         padding: 0 18px 28px;
     }
@@ -1416,67 +1433,68 @@ img{
     }
 }
 
+/* Small-screen navigation and shared content adjustments. */
 @media (max-width: 760px){
     body{
         overflow-x: hidden;
     }
 
     .header-inner{
-        align-items: center;
-        justify-content: space-between;
-        flex-direction: row;
-        flex-wrap: wrap;
+        align-items: center; /* Align children in the cross axis center */
+        justify-content: space-between; /* Push first/last items to edges */
+        flex-direction: row; /* Keep children laid out horizontally */
+        flex-wrap: wrap; /* Allow items to wrap to the next line */
         padding: 10px 12px;
     }
 
     .brand-mark{
-        margin: 0;
+        margin: 0; /* Remove default outer spacing */
     }
 
     .menu-toggle{
-        display: inline-flex;
+        display: inline-flex; /* Flex alignment while staying inline */
     }
 
     .js-enabled .top-nav{
-        width: 100%;
-        display: none;
-        grid-template-columns: 1fr;
+        width: 100%; /* Stretch element to full container width */
+        display: none; /* Collapsed until hamburger toggles open */
+        grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
         gap: 8px;
         margin-top: 8px;
     }
 
     .js-enabled .top-nav.is-open{
-        display: grid;
+        display: grid; /* Use grid layout for structured columns/rows */
     }
 
     .top-nav{
-        width: 100%;
-        grid-template-columns: 1fr;
+        width: 100%; /* Stretch element to full container width */
+        grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
         gap: 8px;
         margin-top: 8px;
     }
 
     .droplist{
-        width: 100%;
+        width: 100%; /* Stretch element to full container width */
         position: static;
     }
 
     .dropbtn,
     .top-nav a{
-        width: 100%;
+        width: 100%; /* Stretch element to full container width */
         min-height: 42px;
-        justify-content: center;
-        text-align: center;
+        justify-content: center; /* Center children along main axis */
+        text-align: center; /* Center-align section titles and callouts */
         padding: 10px 12px;
     }
 
     .droplist .dropdown-menu{
         position: static;
-        display: flex;
+        display: flex; /* Use flexible layout for row/column alignment */
         box-shadow: none;
         background: transparent;
         min-width: 0;
-        padding: 0;
+        padding: 0; /* Remove default inner spacing */
         margin-top: 2px;
     }
 
@@ -1506,7 +1524,7 @@ img{
     .news-grid,
     .gallery-grid,
     .footer .box-container{
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
     }
 
     .events-grid,
@@ -1567,24 +1585,25 @@ img{
     }
 }
 
+/* Volunteer page hero, slider frame, and controls. */
 .volunteering-section{
     padding: 40px 0 60px;
     background-image: url(images/volunteering.webp);
-    text-align: center;
+    text-align: center; /* Center-align section titles and callouts */
     background-size: cover;
     background-position: center;
-    position: relative;
+    position: relative; /* Create positioning context for absolutely positioned children */
 }
 
 .volunteering-title{
-    color: #ffffff;
+    color: #ffffff; /* High contrast text on dark/brand backgrounds */
     font-size: 36px;
     margin: 0 0 20px;
     text-shadow: 2px 2px 6px black;
 }
 
 .volunteering-description{
-    color: #ffffff;
+    color: #ffffff; /* High contrast text on dark/brand backgrounds */
     font-size: 18px;
     margin: 0 0 20px;
     font-family: "Segoe UI",Arial, sans-serif;
@@ -1594,60 +1613,60 @@ img{
 
 .volunteering-images{
     max-width: 1240px;
-    margin: 0 auto;
+    margin: 0 auto; /* Center block horizontally */
     padding: 24px 18px 40px;
 }
 
 .volunteer-slider{
-    position: relative;
+    position: relative; /* Create positioning context for absolutely positioned children */
 }
 
 .volunteer-viewport{
-    overflow: hidden;
+    overflow: hidden; /* Clip overflowing child content */
     border: 1px solid #d8d8d8;
     background: #eeeeee;
     padding: 28px;
 }
 
 .volunteering-list{
-    position: relative;
+    position: relative; /* Create positioning context for absolutely positioned children */
     height: 520px;
     list-style: none;
-    margin: 0;
-    padding: 0;
+    margin: 0; /* Remove default outer spacing */
+    padding: 0; /* Remove default inner spacing */
     touch-action: pan-y;
 }
 
 .volunteering-list .volunteering-item{
-    position: absolute;
+    position: absolute; /* Position element relative to nearest positioned ancestor */
     top: 0;
     bottom: 0;
     left: 0;
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
     opacity: 0;
     pointer-events: none;
     transition: left 0.35s ease, right 0.35s ease, width 0.35s ease, opacity 0.35s ease;
 }
 
 .volunteering-list .volunteering-item .volunteering-image{
-    width: 100%;
+    width: 100%; /* Stretch element to full container width */
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Fill container while preserving image aspect ratio */
     border-radius: 0;
-    border: none;
-    display: block;
+    border: none; /* Remove browser default border */
+    display: block; /* Render element on its own line */
 }
 
 .volunteering-list .volunteering-caption{
-    position: absolute;
+    position: absolute; /* Position element relative to nearest positioned ancestor */
     left: 50%;
     bottom: 18px;
     transform: translateX(-50%);
-    margin: 0;
+    margin: 0; /* Remove default outer spacing */
     padding: 9px 16px;
     border-radius: 30px;
     background: rgba(17, 17, 17, 0.72);
-    color: #ffffff;
+    color: #ffffff; /* High contrast text on dark/brand backgrounds */
     font-size: 0.95rem;
     font-weight: 500;
     white-space: nowrap;
@@ -1656,12 +1675,13 @@ img{
     transition: opacity 0.2s ease;
 }
 
+/* Desktop layout: show exactly two cards (left/current and right/next). */
 .volunteering-list .volunteering-item.active{
-    left: 26%;
-    width: 48%;
+    left: 0;
+    width: 49%; /* Left visible card on desktop */
     opacity: 1;
     pointer-events: auto;
-    z-index: 3;
+    z-index: 3; /* Bring active slider cards above inactive items */
 }
 
 .volunteering-list .volunteering-item.active .volunteering-caption{
@@ -1669,36 +1689,39 @@ img{
 }
 
 .volunteering-list .volunteering-item.prev{
-    left: 0;
-    width: 22%;
-    opacity: 1;
-    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .volunteering-list .volunteering-item.next{
-    right: 0;
-    width: 22%;
+    left: 51%;
+    width: 49%; /* Right visible card on desktop */
     opacity: 1;
-    z-index: 2;
+    pointer-events: auto;
+    z-index: 3; /* Bring active slider cards above inactive items */
+}
+
+.volunteering-list .volunteering-item.next .volunteering-caption{
+    opacity: 1;
 }
 
 .volunteer-nav{
-    position: absolute;
+    position: absolute; /* Position element relative to nearest positioned ancestor */
     top: 50%;
     transform: translateY(-50%);
     height: 72px;
     width: 72px;
     border-radius: 50%;
-    border: none;
+    border: none; /* Remove browser default border */
     color: #1f2a2d;
     background: #d9d9d9;
-    cursor: pointer;
+    cursor: pointer; /* Indicate clickable interactive element */
     font-size: 48px;
     line-height: 1;
-    z-index: 2;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    z-index: 2; /* Keep controls above slider images */
+    display: inline-flex; /* Flex alignment while staying inline */
+    align-items: center; /* Align children in the cross axis center */
+    justify-content: center; /* Center children along main axis */
 }
 
 .volunteer-prev{
@@ -1714,8 +1737,8 @@ img{
 }
 
 .volunteer-dots{
-    display: flex;
-    justify-content: center;
+    display: flex; /* Use flexible layout for row/column alignment */
+    justify-content: center; /* Center children along main axis */
     gap: 8px;
     margin-top: 16px;
 }
@@ -1724,43 +1747,44 @@ img{
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    border: none;
+    border: none; /* Remove browser default border */
     background: #c6d4cd;
-    cursor: pointer;
+    cursor: pointer; /* Indicate clickable interactive element */
 }
 
 .volunteer-dot.active{
     background: #106652;
 }
 
+/* Mobile layout falls back to one full-width card per swipe step. */
 @media (max-width: 980px){
     .volunteering-images{
         padding: 18px 12px 32px;
     }
 
     .volunteer-viewport{
-        padding: 0;
+        padding: 0; /* Remove default inner spacing */
         border: 1px solid #d8d8d8;
         background: #eeeeee;
     }
 
     .volunteering-list{
-        display: flex;
+        display: flex; /* Use flexible layout for row/column alignment */
         position: static;
         height: auto;
         transition: transform 0.35s ease;
-        width: 100%;
+        width: 100%; /* Stretch element to full container width */
     }
 
     .volunteering-list .volunteering-item{
         position: static;
-        min-width: 100%;
+        min-width: 100%; /* Stretch element to full container width */
         flex: 0 0 100%;
-        max-width: 100%;
+        max-width: 100%; /* Stretch element to full container width */
         padding: 14px;
         opacity: 1;
         pointer-events: auto;
-        width: 100%;
+        width: 100%; /* Stretch element to full container width */
     }
 
     .volunteering-list .volunteering-item.active,
@@ -1768,14 +1792,14 @@ img{
     .volunteering-list .volunteering-item.next{
         left: auto;
         right: auto;
-        width: 100%;
-        max-width: 100%;
+        width: 100%; /* Stretch element to full container width */
+        max-width: 100%; /* Stretch element to full container width */
         z-index: auto;
     }
 
     .volunteering-list .volunteering-item .volunteering-image{
         height: 200px;
-        width: 100%;
+        width: 100%; /* Stretch element to full container width */
     }
 
     .volunteering-list .volunteering-caption{
@@ -1787,7 +1811,7 @@ img{
         color: #106652;
         opacity: 1;
         white-space: normal;
-        text-align: center;
+        text-align: center; /* Center-align section titles and callouts */
     }
 
     .volunteer-nav{
@@ -1804,3 +1828,4 @@ img{
         right: 6px;
     }
 }
+

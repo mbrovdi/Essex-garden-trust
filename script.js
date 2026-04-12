@@ -14,6 +14,40 @@ if(cookieButton && cookieBar){
 
 document.documentElement.classList.add("js-enabled");
 
+function setupActiveNavigation() {
+    const nav = document.querySelector(".top-nav");
+
+    if (!nav) {
+        return;
+    }
+
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    const allLinks = Array.from(nav.querySelectorAll("a[href]"));
+
+    allLinks.forEach((link) => {
+        const linkPath = link.getAttribute("href");
+
+        if (!linkPath || linkPath.startsWith("http") || linkPath.startsWith("#")) {
+            return;
+        }
+
+        const normalizedLinkPath = linkPath.split("/").pop();
+
+        if (normalizedLinkPath === currentPath) {
+            link.classList.add("active");
+
+            const parentDropdown = link.closest(".droplist");
+            const parentButton = parentDropdown ? parentDropdown.querySelector(".dropbtn") : null;
+
+            if (parentButton) {
+                parentButton.classList.add("active");
+            }
+        }
+    });
+}
+
+setupActiveNavigation();
+
 function setupMobileMenu() {
     const headerInner = document.querySelector(".header-inner");
     const nav = document.querySelector(".top-nav");
@@ -80,6 +114,7 @@ setupMobileMenu();
 function setupVolunteerSlider() {
     const slider = document.querySelector("[data-volunteer-slider]");
 
+    // Keep backward compatibility with the previous volunteer markup.
     if (!slider) {
         const legacyCards = Array.from(document.querySelectorAll(".volunteering-images .volunteering"));
 
@@ -154,6 +189,7 @@ function setupVolunteerSlider() {
     let endX = 0;
 
     dotsContainer.innerHTML = "";
+    // One dot per slide; the active dot tracks the left visible card on desktop.
     slides.forEach((_, index) => {
         const dot = document.createElement("button");
         dot.type = "button";
@@ -171,22 +207,22 @@ function setupVolunteerSlider() {
     function updateSlider() {
         const isMobile = window.innerWidth <= 980;
 
+        // Mobile uses a single-card horizontal swipe track.
         if (isMobile) {
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
             slides.forEach((slide) => {
                 slide.classList.remove("active", "prev", "next");
             });
         } else {
+            // Desktop shows two cards at once: current (left) and next (right).
             track.style.transform = "";
             slides.forEach((slide) => {
                 slide.classList.remove("active", "prev", "next");
             });
 
-            const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
             const nextIndex = (currentIndex + 1) % slides.length;
 
             slides[currentIndex].classList.add("active");
-            slides[prevIndex].classList.add("prev");
             slides[nextIndex].classList.add("next");
         }
 
