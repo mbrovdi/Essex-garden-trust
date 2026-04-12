@@ -9,6 +9,7 @@
     <script src="script.js" defer></script>
 </head>
 <body class="membership-home">
+    <!-- Site-wide header and primary navigation -->
     <header class="site-header">
         <div class="header-inner">
             <img src="Untitled-removebg-preview.png" alt="Essex Garden Trust" class="brand-mark">
@@ -45,6 +46,8 @@
             </nav>
         </div>
     </header>
+
+    <!-- Membership plans and pricing cards -->
     <section class="membership-section">
         <h2 class="membership-title">Join the Essex Garden Trust</h2>
         <p class="membership-description">Support our work and enjoy exclusive benefits</p>
@@ -61,7 +64,7 @@
                     <hr>
                     <li>✓Access to resources</li>
                 </ul>
-                <button class="membership-button" onclick="location.href='membership.html#membership-form'">Join Now</button>
+                <button class="membership-button" data-membership-plan="Individual" data-membership-price="25" onclick="location.href='membership.html#membership-form'">Join Now</button>
             </div>
             <div class="membership-card">
                 <h3 class="membership">Family</h3>
@@ -75,7 +78,7 @@
                     <hr>
                     <li>✓10% gift shop discount</li>
                 </ul>
-                <button class="membership-button1" onclick="location.href='membership.html#membership-form'">Join Now</button>
+                <button class="membership-button1" data-membership-plan="Family" data-membership-price="40" onclick="location.href='membership.html#membership-form'">Join Now</button>
             </div>
             <div class="membership-card">
                 <h3 class="membership">Patron</h3>
@@ -89,15 +92,16 @@
                     <hr>
                     <li>✓ Recognition on website</li>
                 </ul>
-                <button class="membership-button2" onclick="location.href='membership.html#membership-form'">Join Now</button>
+                <button class="membership-button2" data-membership-plan="Patron" data-membership-price="100" onclick="location.href='membership.html#membership-form'">Join Now</button>
             </div>
         </div>
     </section>
     
+    <!-- Membership form for joining details -->
     <section class="membership-form-section" id="membership-form">
         <div class="membership-form-card">
             <h2 class="membership-form-title">Your details</h2>
-            <form class="membership-form" action="#" method="post">
+            <form class="membership-form" action="#" method="post" id="membershipJoinForm">
                 <div class="membership-form-row">
                     <input type="text" class="membership-form-input" name="firstName" placeholder="First name *" required>
                     <input type="text" class="membership-form-input" name="lastName" placeholder="Last name *" required>
@@ -116,7 +120,45 @@
                 <button type="submit" class="membership-form-submit">Continue</button>
             </form>
         </div>
+
+        <div class="membership-payment-card" id="membership-payment" hidden>
+            <h2 class="membership-form-title">Step 2: Pay Membership</h2>
+            <p class="membership-payment-summary">
+                Selected plan: <strong><span id="membershipSelectedPlan">Individual</span></strong><br>
+                Annual fee: <strong>£<span id="membershipSelectedAmount">25</span></strong>
+            </p>
+
+            <div class="payment-methods" aria-label="Membership payment method">
+                <p class="payment-methods-label">Payment method</p>
+                <div class="payment-methods-options">
+                    <button type="button" class="payment-method-btn active" data-membership-payment-method="paypal">PayPal</button>
+                    <button type="button" class="payment-method-btn" data-membership-payment-method="stripe">Card (Stripe)</button>
+                </div>
+            </div>
+
+            <button type="button" class="membership-form-submit" id="membershipPayNow">Pay Membership Fee</button>
+            <p class="membership-payment-note">Frontend demo: this step simulates checkout for assignment purposes.</p>
+        </div>
     </section>
+
+    <div class="payment-demo-modal" id="membershipPaymentDemoModal" hidden>
+        <div class="payment-demo-backdrop" data-membership-payment-demo-close></div>
+        <div class="payment-demo-dialog" role="dialog" aria-modal="true" aria-labelledby="membershipPaymentDemoTitle">
+            <h3 id="membershipPaymentDemoTitle">Membership Payment Demo</h3>
+            <p class="payment-demo-text">This assignment uses a frontend-only membership checkout demo.</p>
+            <p class="payment-demo-summary">
+                Plan: <strong><span id="membershipPaymentDemoPlan">Individual</span></strong><br>
+                Amount: <strong>£<span id="membershipPaymentDemoAmount">25</span></strong><br>
+                Method: <strong><span id="membershipPaymentDemoMethod">PayPal</span></strong>
+            </p>
+            <div class="payment-demo-actions">
+                <button type="button" class="freq-btn" data-membership-payment-demo-close>Cancel</button>
+                <button type="button" class="donate-btn" id="membershipPaymentDemoConfirm">Confirm Demo Payment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Site footer with contact details, quick links, and social media -->
     <section class="footer">
         <div class="box-container">
             <div class="box">
