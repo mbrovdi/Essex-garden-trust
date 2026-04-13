@@ -1,21 +1,3 @@
-// Optional UI helpers used on pages that include these elements.
-// This script is shared by all pages, so every feature checks for required DOM nodes
-// and exits early when the page does not contain them.
-const yearNode = document.getElementById("year"); // Define local constant for this feature flow.
-const cookieBar = document.getElementById("cookieBar"); // Define local constant for this feature flow.
-const cookieButton = document.getElementById("cookieOk"); // Define local constant for this feature flow.
-
-if (yearNode){
-    yearNode.textContent = new Date().getFullYear(); // Auto-updates footer year without manual edits.
-}
-
-if(cookieButton && cookieBar){
-    // Hide cookie notice for the current visit when user accepts.
-    cookieButton.addEventListener("click", () => {
-        cookieBar.style.display = "none"; // Removes banner from layout after consent action.
-    });
-}
-
 // Flag used by CSS to enable JS-only responsive behaviors.
 document.documentElement.classList.add("js-enabled"); // Enables CSS rules that depend on JavaScript.
 
@@ -127,169 +109,120 @@ function setupMobileMenu() {
 
 setupMobileMenu(); // Initialize this page feature immediately.
 
-// Volunteer gallery slider with desktop + touch support.
-// Behavior summary:
-// - Desktop: show current + next card side by side.
-// - Mobile: show one full-width card and slide the track with translateX.
+// Volunteer slider:
+// - on desktop it shows two cards
+// - on mobile it shows one card and allows swipe
 function setupVolunteerSlider() {
-    const slider = document.querySelector("[data-volunteer-slider]"); // Define local constant for this feature flow.
+    const slider = document.querySelector("[data-volunteer-slider]");
 
-    // Keep backward compatibility with the previous volunteer markup.
     if (!slider) {
-        const legacyCards = Array.from(document.querySelectorAll(".volunteering-images .volunteering")); // Define local constant for this feature flow.
-
-        if (legacyCards.length > 0) {
-            let legacyIndex = 0; // Keep mutable state used by later interactions.
-            let legacyStartX = 0; // Keep mutable state used by later interactions.
-            let legacyEndX = 0; // Keep mutable state used by later interactions.
-
-            const showLegacyCard = () => {
-                // Legacy mode shows one card at a time.
-                legacyCards.forEach((card, index) => {
-                    card.style.display = index === legacyIndex ? "block" : "none"; // Show current card only.
-                });
-            };
-
-            const goLegacyNext = () => {
-                legacyIndex = (legacyIndex + 1) % legacyCards.length; // Execute this step as part of the current feature logic.
-                showLegacyCard(); // Execute this step as part of the current feature logic.
-            };
-
-            const goLegacyPrev = () => {
-                legacyIndex = (legacyIndex - 1 + legacyCards.length) % legacyCards.length; // Execute this step as part of the current feature logic.
-                showLegacyCard(); // Execute this step as part of the current feature logic.
-            };
-
-            legacyCards.forEach((card) => {
-                const nextButton = card.querySelector(".volunteering-button"); // Define local constant for this feature flow.
-                if (nextButton) {
-                    nextButton.addEventListener("click", goLegacyNext); // Bind user interaction handler.
-                }
-            });
-
-            const legacyContainer = document.querySelector(".volunteering-images"); // Define local constant for this feature flow.
-            if (legacyContainer) {
-                legacyContainer.addEventListener("touchstart", (event) => {
-                    legacyStartX = event.changedTouches[0].clientX; // Execute this step as part of the current feature logic.
-                }, { passive: true });
-
-                legacyContainer.addEventListener("touchend", (event) => {
-                    legacyEndX = event.changedTouches[0].clientX; // Execute this step as part of the current feature logic.
-                    const difference = legacyStartX - legacyEndX; // Define local constant for this feature flow.
-
-                    if (Math.abs(difference) < 40) {
-                        return; // Execute this step as part of the current feature logic.
-                    }
-
-                    if (difference > 0) {
-                        goLegacyNext(); // Execute this step as part of the current feature logic.
-                    } else {
-                        goLegacyPrev(); // Execute this step as part of the current feature logic.
-                    }
-                }, { passive: true });
-            }
-
-            showLegacyCard(); // Execute this step as part of the current feature logic.
-        }
-
-        return; // Execute this step as part of the current feature logic.
+        return;
     }
 
-    const track = slider.querySelector(".volunteering-list"); // Define local constant for this feature flow.
-    const slides = Array.from(slider.querySelectorAll(".volunteering-item")); // Define local constant for this feature flow.
-    const prevButton = slider.querySelector(".volunteer-prev"); // Define local constant for this feature flow.
-    const nextButton = slider.querySelector(".volunteer-next"); // Define local constant for this feature flow.
-    const dotsContainer = slider.querySelector(".volunteer-dots"); // Define local constant for this feature flow.
+    const track = slider.querySelector(".volunteering-list");
+    const slides = Array.from(slider.querySelectorAll(".volunteering-item"));
+    const prevButton = slider.querySelector(".volunteer-prev");
+    const nextButton = slider.querySelector(".volunteer-next");
+    const dotsContainer = slider.querySelector(".volunteer-dots");
 
     if (!track || slides.length === 0 || !prevButton || !nextButton || !dotsContainer) {
-        return; // Execute this step as part of the current feature logic.
+        return;
     }
 
-    let currentIndex = 0; // Keep mutable state used by later interactions.
-    let startX = 0; // Keep mutable state used by later interactions.
-    let endX = 0; // Keep mutable state used by later interactions.
+    let currentIndex = 0;
+    let touchStartX = 0;
 
-    dotsContainer.innerHTML = ""; // Execute this step as part of the current feature logic.
-    // One dot per slide; the active dot tracks the left visible card on desktop.
-    slides.forEach((_, index) => {
-        const dot = document.createElement("button"); // Define local constant for this feature flow.
-        dot.type = "button"; // Execute this step as part of the current feature logic.
-        dot.className = "volunteer-dot"; // Execute this step as part of the current feature logic.
-        dot.setAttribute("aria-label", `Go to image ${index + 1}`); // Improves keyboard/screen-reader slider navigation.
-        dot.addEventListener("click", () => {
-            currentIndex = index; // Execute this step as part of the current feature logic.
-            updateSlider(); // Execute this step as part of the current feature logic.
+    function clearSlideClasses() {
+        slides.forEach((slide) => {
+            slide.classList.remove("active", "next");
         });
-        dotsContainer.appendChild(dot); // Insert generated element into the document.
-    });
+    }
 
-    const dots = Array.from(dotsContainer.querySelectorAll(".volunteer-dot")); // Define local constant for this feature flow.
+    function updateDots(dots) {
+        dots.forEach((dot, index) => {
+            dot.classList.toggle("active", index === currentIndex);
+        });
+    }
 
-    function updateSlider() {
-        // One function controls all visual states so arrows, dots, and swipe stay in sync.
-        const isMobile = window.innerWidth <= 980; // Define local constant for this feature flow.
+    function showSlides(dots) {
+        const isMobile = window.innerWidth <= 980;
+        clearSlideClasses();
 
-        // Mobile uses a single-card horizontal swipe track.
         if (isMobile) {
-            track.style.transform = `translateX(-${currentIndex * 100}%)`; // Move track by one full slide width.
-            slides.forEach((slide) => {
-                slide.classList.remove("active", "prev", "next"); // Remove CSS state class when no longer needed.
-            });
+            // Move the whole row left/right on mobile.
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
         } else {
-            // Desktop shows two cards at once: current (left) and next (right).
-            track.style.transform = ""; // Execute this step as part of the current feature logic.
-            slides.forEach((slide) => {
-                slide.classList.remove("active", "prev", "next"); // Remove CSS state class when no longer needed.
-            });
-
-            const nextIndex = (currentIndex + 1) % slides.length; // Define local constant for this feature flow.
-
-            slides[currentIndex].classList.add("active"); // Left visible slide.
-            slides[nextIndex].classList.add("next"); // Right visible slide.
+            // Desktop uses classes to show the current slide and the next slide.
+            track.style.transform = "";
+            const nextIndex = (currentIndex + 1) % slides.length;
+            slides[currentIndex].classList.add("active");
+            slides[nextIndex].classList.add("next");
         }
 
-        dots.forEach((dot, index) => {
-            dot.classList.toggle("active", index === currentIndex); // Keeps dot indicator aligned with visible slide.
-        });
+        updateDots(dots);
     }
 
-    // Arrow controls cycle through slides in a loop.
+    function showNextSlide(dots) {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlides(dots);
+    }
+
+    function showPreviousSlide(dots) {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlides(dots);
+    }
+
+    // Create one dot for each slide.
+    dotsContainer.innerHTML = "";
+    slides.forEach((_, index) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "volunteer-dot";
+        dot.setAttribute("aria-label", `Go to image ${index + 1}`);
+        dotsContainer.appendChild(dot);
+    });
+
+    const dots = Array.from(dotsContainer.querySelectorAll(".volunteer-dot"));
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+            currentIndex = index;
+            showSlides(dots);
+        });
+    });
+
     prevButton.addEventListener("click", () => {
-        currentIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1; // Execute this step as part of the current feature logic.
-        updateSlider(); // Execute this step as part of the current feature logic.
+        showPreviousSlide(dots);
     });
 
     nextButton.addEventListener("click", () => {
-        currentIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1; // Execute this step as part of the current feature logic.
-        updateSlider(); // Execute this step as part of the current feature logic.
+        showNextSlide(dots);
     });
 
-    // Swipe gestures for touch devices.
     track.addEventListener("touchstart", (event) => {
-        startX = event.changedTouches[0].clientX; // Capture initial finger X coordinate.
+        touchStartX = event.changedTouches[0].clientX;
     }, { passive: true });
 
     track.addEventListener("touchend", (event) => {
-        endX = event.changedTouches[0].clientX; // Capture final finger X coordinate.
-        const difference = startX - endX; // Positive means swipe left, negative means swipe right.
+        const touchEndX = event.changedTouches[0].clientX;
+        const swipeDistance = touchStartX - touchEndX;
 
-        if (Math.abs(difference) < 40) {
-            // Ignore small finger movement to prevent accidental slide changes.
-            return; // Execute this step as part of the current feature logic.
+        if (Math.abs(swipeDistance) < 40) {
+            return;
         }
 
-        if (difference > 0) {
-            currentIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1; // Execute this step as part of the current feature logic.
+        if (swipeDistance > 0) {
+            showNextSlide(dots);
         } else {
-            currentIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1; // Execute this step as part of the current feature logic.
+            showPreviousSlide(dots);
         }
-
-        updateSlider(); // Execute this step as part of the current feature logic.
     }, { passive: true });
 
-    window.addEventListener("resize", updateSlider); // React to browser events to keep UI state updated.
+    window.addEventListener("resize", () => {
+        showSlides(dots);
+    });
 
-    updateSlider(); // Execute this step as part of the current feature logic.
+    showSlides(dots);
 }
 
 setupVolunteerSlider(); // Initialize this page feature immediately.
@@ -369,39 +302,43 @@ function setupNewsLoadMore() {
 
 setupNewsLoadMore(); // Initialize this page feature immediately.
 
-// Donation page: frontend-only payment flow with method/frequency selectors.
-// No backend is required here:
-// - If real hosted checkout links exist, open them in a new tab.
-// - Otherwise, show a demo modal to simulate payment completion.
+// Donation page payment flow (beginner-friendly):
+// 1) user picks frequency + method
+// 2) user clicks amount button
+// 3) we find checkout link
+// 4) real link opens new tab, otherwise we show demo modal
 function setupDonationPayments() {
-    const donationSection = document.querySelector("#donation-options"); // Define local constant for this feature flow.
-
+    // Find the donate area; if this page does not have it, stop safely.
+    const donationSection = document.querySelector("#donation-options");
     if (!donationSection) {
-        return; // Execute this step as part of the current feature logic.
+        return;
     }
 
-    const frequencyButtons = Array.from(donationSection.querySelectorAll(".freq-btn")); // Define local constant for this feature flow.
-    const methodButtons = Array.from(donationSection.querySelectorAll(".payment-method-btn")); // Define local constant for this feature flow.
-    const donateButtons = Array.from(document.querySelectorAll(".donate-btn[data-donation-amount]")); // Define local constant for this feature flow.
+    // Buttons users click to choose frequency, method, and amount.
+    const frequencyButtons = Array.from(donationSection.querySelectorAll(".freq-btn"));
+    const methodButtons = Array.from(donationSection.querySelectorAll(".payment-method-btn"));
+    const donateButtons = Array.from(document.querySelectorAll(".donate-btn[data-donation-amount]"));
 
-    if (donateButtons.length === 0 || methodButtons.length === 0 || frequencyButtons.length === 0) {
-        return; // Execute this step as part of the current feature logic.
+    if (frequencyButtons.length === 0 || methodButtons.length === 0 || donateButtons.length === 0) {
+        return;
     }
 
-    let selectedFrequency = "one-time"; // Default billing interval.
-    let selectedMethod = "paypal"; // Default payment method.
-    // Stores the current transaction preview while modal is open.
-    let pendingPayment = null; // Keep mutable state used by later interactions.
+    // Default selected values when page loads.
+    let selectedFrequency = "one-time";
+    let selectedMethod = "paypal";
+    // Saved values while demo modal is open.
+    let pendingPayment = null;
 
-    const demoModal = document.getElementById("paymentDemoModal"); // Define local constant for this feature flow.
-    const demoAmount = document.getElementById("paymentDemoAmount"); // Define local constant for this feature flow.
-    const demoMethod = document.getElementById("paymentDemoMethod"); // Define local constant for this feature flow.
-    const demoFrequency = document.getElementById("paymentDemoFrequency"); // Define local constant for this feature flow.
-    const demoConfirm = document.getElementById("paymentDemoConfirm"); // Define local constant for this feature flow.
-    const demoCloseButtons = Array.from(document.querySelectorAll("[data-payment-demo-close]")); // Define local constant for this feature flow.
+    const demoModal = document.getElementById("paymentDemoModal");
+    const demoAmount = document.getElementById("paymentDemoAmount");
+    const demoMethod = document.getElementById("paymentDemoMethod");
+    const demoFrequency = document.getElementById("paymentDemoFrequency");
+    const demoConfirm = document.getElementById("paymentDemoConfirm");
+    const demoCloseButtons = Array.from(document.querySelectorAll("[data-payment-demo-close]"));
 
+    // Map of method + frequency + amount -> checkout URL.
+    // Stripe URLs are placeholders now, so they trigger demo mode.
     const paymentLinks = {
-        // Real links can be inserted here later; placeholders trigger demo modal flow.
         paypal: {
             "one-time": {
                 "10": "https://www.paypal.com/donate",
@@ -428,93 +365,99 @@ function setupDonationPayments() {
         }
     };
 
-    const hasRealLink = (url) => {
-        return Boolean(url) && !url.includes("placeholder"); // Treat placeholder URLs as demo-mode only.
-    };
+    // Helper: show active style on only one button in a group.
+    function setActiveButton(buttons, clickedButton) {
+        buttons.forEach((button) => button.classList.remove("active"));
+        clickedButton.classList.add("active");
+    }
 
-    const closeDemoModal = () => {
+    // Helper: placeholder links are treated as demo, not real checkout.
+    function isRealCheckoutLink(url) {
+        return Boolean(url) && !url.includes("placeholder");
+    }
+
+    // Hide the modal and clear saved payment data.
+    function closeDemoModal() {
         if (!demoModal) {
-            return; // Execute this step as part of the current feature logic.
+            return;
         }
 
-        demoModal.hidden = true; // Hide modal in the DOM.
-        pendingPayment = null; // Execute this step as part of the current feature logic.
-    };
+        demoModal.hidden = true;
+        pendingPayment = null;
+    }
 
-    const openDemoModal = (amount, method, frequency) => {
-        // Fallback path for assignment/demo mode when real checkout links are unavailable.
+    // Show selected payment details in modal for confirmation.
+    function openDemoModal(amount, method, frequency) {
         if (!demoModal || !demoAmount || !demoMethod || !demoFrequency) {
-            alert("Demo payment: £" + amount + " via " + method + " (" + frequency + ")"); // Provide immediate user feedback for this action.
-            return; // Execute this step as part of the current feature logic.
+            alert("Demo payment: £" + amount + " via " + method + " (" + frequency + ")");
+            return;
         }
 
-        pendingPayment = { amount, method, frequency }; // Save selection so confirm button can finalize same values.
-        // Mirror selected values in modal so user can verify before confirming.
-        demoAmount.textContent = amount; // Write computed text into the target element.
-        demoMethod.textContent = method === "stripe" ? "Card (Stripe)" : "PayPal"; // Write computed text into the target element.
-        demoFrequency.textContent = frequency === "monthly" ? "Monthly" : "One-time"; // Write computed text into the target element.
-        demoModal.hidden = false; // Show modal only after all summary values are populated.
-    };
+        pendingPayment = { amount, method, frequency };
+        demoAmount.textContent = amount;
+        demoMethod.textContent = method === "stripe" ? "Card (Stripe)" : "PayPal";
+        demoFrequency.textContent = frequency === "monthly" ? "Monthly" : "One-time";
+        demoModal.hidden = false;
+    }
 
     frequencyButtons.forEach((button) => {
-        // Persist selected donation cadence (one-time or monthly).
         button.addEventListener("click", () => {
-            frequencyButtons.forEach((item) => item.classList.remove("active")); // Ensure only one frequency looks selected.
-            button.classList.add("active"); // Apply CSS state class for visual feedback.
-            selectedFrequency = button.textContent.trim().toLowerCase() === "monthly" ? "monthly" : "one-time"; // Execute this step as part of the current feature logic.
+            // Update selected frequency when user clicks a frequency button.
+            setActiveButton(frequencyButtons, button);
+            const buttonText = button.textContent ? button.textContent.trim().toLowerCase() : "";
+            selectedFrequency = buttonText === "monthly" ? "monthly" : "one-time";
         });
     });
 
     methodButtons.forEach((button) => {
-        // Persist selected payment method.
         button.addEventListener("click", () => {
-            methodButtons.forEach((item) => item.classList.remove("active")); // Ensure only one payment method looks selected.
-            button.classList.add("active"); // Apply CSS state class for visual feedback.
-            selectedMethod = button.getAttribute("data-payment-method") || "paypal"; // Read selected payment method.
+            // Update selected method when user clicks PayPal/Card.
+            setActiveButton(methodButtons, button);
+            selectedMethod = button.getAttribute("data-payment-method") || "paypal";
         });
     });
 
     donateButtons.forEach((button) => {
-        // Route donation action to either real checkout URL or local demo modal.
         button.addEventListener("click", () => {
-            const amount = button.getAttribute("data-donation-amount"); // Donation amount from button data attribute.
-            const url = paymentLinks[selectedMethod]?.[selectedFrequency]?.[amount || ""]; // Resolve checkout URL from current method+frequency+amount.
-
+            // Read amount from clicked button (for example: 10, 25, 50).
+            const amount = button.getAttribute("data-donation-amount");
             if (!amount) {
-                return; // Execute this step as part of the current feature logic.
+                return;
             }
 
-            if (!hasRealLink(url)) {
-                // In assignment/demo mode, use modal confirmation instead of external checkout.
-                openDemoModal(amount, selectedMethod, selectedFrequency); // Execute this step as part of the current feature logic.
-                return; // Execute this step as part of the current feature logic.
+            // Find the right URL for current method + frequency + amount.
+            const checkoutUrl = paymentLinks[selectedMethod]?.[selectedFrequency]?.[amount];
+
+            if (!isRealCheckoutLink(checkoutUrl)) {
+                // No real checkout yet: use local demo modal.
+                openDemoModal(amount, selectedMethod, selectedFrequency);
+                return;
             }
 
-            // Open external hosted checkout in a safe new tab.
-            window.open(url, "_blank", "noopener,noreferrer"); // Open external checkout securely in new tab.
+            // Real checkout link: open provider page in a new tab.
+            window.open(checkoutUrl, "_blank", "noopener,noreferrer");
         });
     });
 
     if (demoConfirm) {
         demoConfirm.addEventListener("click", () => {
             if (!pendingPayment) {
-                closeDemoModal(); // Reset modal state when no pending transaction exists.
-                return; // Execute this step as part of the current feature logic.
+                closeDemoModal();
+                return;
             }
 
-            // Simulate successful payment confirmation for frontend-only assignments.
+            // Demo success message so user can complete test flow.
             alert(
                 "Demo payment confirmed: £" + pendingPayment.amount +
                 " via " + (pendingPayment.method === "stripe" ? "Card (Stripe)" : "PayPal") +
                 " (" + (pendingPayment.frequency === "monthly" ? "Monthly" : "One-time") + ")"
-            ); // Execute this step as part of the current feature logic.
-            closeDemoModal(); // Hide modal and clear pending transaction after confirmation.
+            );
+            closeDemoModal();
         });
     }
 
-    // Close modal from cancel button or backdrop click.
     demoCloseButtons.forEach((button) => {
-        button.addEventListener("click", closeDemoModal); // Bind user interaction handler.
+        button.addEventListener("click", closeDemoModal);
     });
 }
 
@@ -522,6 +465,7 @@ setupDonationPayments(); // Initialize this page feature immediately.
 
 // Membership page: collect form details, then simulate hosted payment checkout.
 function setupMembershipPayments() {
+    // Membership form and payment area on membership page.
     const membershipForm = document.getElementById("membershipJoinForm");
     const paymentCard = document.getElementById("membership-payment");
 
@@ -529,6 +473,7 @@ function setupMembershipPayments() {
         return;
     }
 
+    // Membership options and summary fields.
     const planButtons = Array.from(document.querySelectorAll("[data-membership-plan]"));
     const methodButtons = Array.from(paymentCard.querySelectorAll("[data-membership-payment-method]"));
     const selectedPlanText = document.getElementById("membershipSelectedPlan");
@@ -542,11 +487,13 @@ function setupMembershipPayments() {
     const demoConfirm = document.getElementById("membershipPaymentDemoConfirm");
     const demoCloseButtons = Array.from(document.querySelectorAll("[data-membership-payment-demo-close]"));
 
+    // Default selected plan/method values.
     let selectedPlan = "Individual";
     let selectedAmount = "25";
     let selectedMethod = "paypal";
     let pendingMembershipPayment = null;
 
+    // Real links can replace placeholders later.
     const membershipPaymentLinks = {
         paypal: {
             "25": "https://www.paypal.com/donate",
@@ -560,10 +507,12 @@ function setupMembershipPayments() {
         }
     };
 
+    // True means we have a live checkout URL.
     const hasRealLink = (url) => {
         return Boolean(url) && !url.includes("placeholder");
     };
 
+    // Keep summary panel in sync with current selections.
     const updateSummary = () => {
         if (selectedPlanText) {
             selectedPlanText.textContent = selectedPlan;
@@ -574,6 +523,7 @@ function setupMembershipPayments() {
         }
     };
 
+    // Close modal and clear temporary pending data.
     const closeDemoModal = () => {
         if (!demoModal) {
             return;
@@ -583,6 +533,7 @@ function setupMembershipPayments() {
         pendingMembershipPayment = null;
     };
 
+    // Open modal with selected membership payment details.
     const openDemoModal = () => {
         if (!demoModal || !demoPlan || !demoAmount || !demoMethod) {
             alert("Demo membership payment: £" + selectedAmount + " via " + (selectedMethod === "stripe" ? "Card (Stripe)" : "PayPal"));
@@ -603,6 +554,7 @@ function setupMembershipPayments() {
 
     planButtons.forEach((button) => {
         button.addEventListener("click", () => {
+            // Update selected membership type and price.
             selectedPlan = button.getAttribute("data-membership-plan") || "Individual";
             selectedAmount = button.getAttribute("data-membership-price") || "25";
             updateSummary();
@@ -611,6 +563,7 @@ function setupMembershipPayments() {
 
     methodButtons.forEach((button) => {
         button.addEventListener("click", () => {
+            // Only one payment method can be active at a time.
             methodButtons.forEach((item) => item.classList.remove("active"));
             button.classList.add("active");
             selectedMethod = button.getAttribute("data-membership-payment-method") || "paypal";
@@ -618,6 +571,7 @@ function setupMembershipPayments() {
     });
 
     membershipForm.addEventListener("submit", (event) => {
+        // Prevent real form submit; reveal payment card on same page.
         event.preventDefault();
         paymentCard.hidden = false;
         paymentCard.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -628,10 +582,12 @@ function setupMembershipPayments() {
             const url = membershipPaymentLinks[selectedMethod]?.[selectedAmount];
 
             if (!hasRealLink(url)) {
+                // Placeholder URL means demo flow.
                 openDemoModal();
                 return;
             }
 
+            // Real checkout link available.
             window.open(url, "_blank", "noopener,noreferrer");
         });
     }
