@@ -577,13 +577,27 @@ section{
 }
 
 .events-grid--more{
-    grid-template-columns: 1fr; /* Single-column stack for narrow layouts */
-    max-width: 760px;
-    margin: 0 auto; /* Center block horizontally */
+    grid-template-columns: repeat(3, minmax(220px, 1fr)); /* Match news card sizing across all event rows */
 }
 
 .events-grid--more .events-card{
     max-width: 100%; /* Stretch element to full container width */
+}
+
+@media (max-width: 900px){
+    .events-grid,
+    .events-grid--more{
+        grid-template-columns: repeat(2, minmax(220px, 1fr)); /* Match news tablet layout */
+        padding: 0 24px;
+    }
+}
+
+@media (max-width: 600px){
+    .events-grid,
+    .events-grid--more{
+        grid-template-columns: 1fr; /* Match news mobile layout */
+        padding: 0 12px;
+    }
 }
 
 .events-load-more-wrap{
@@ -2631,6 +2645,10 @@ section,
     margin-bottom: 0;
 }
 
+.container-news{
+    padding-bottom: 64px;
+}
+
 .events-grid--top,
 .events-grid--more,
 .news-grid--top,
@@ -2644,11 +2662,31 @@ section,
     text-align: left;
 }
 
+.events-card{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.news-card{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 .events-card h3,
 .news-card h3{
     margin: 2px 0 0;
     text-align: left;
     line-height: 1.3;
+}
+
+.events-card h3{
+    min-height: 5.2em;
+}
+
+.news-card h3{
+    min-height: 5.2em;
 }
 
 .events-card p,
@@ -2657,6 +2695,22 @@ section,
     padding: 0;
     margin: 0;
     text-align: left;
+}
+
+.events-text{
+    min-height: 2.6em;
+}
+
+.events-text1{
+    flex: 1 1 auto;
+    min-height: 6.3em;
+    line-height: 1.5;
+}
+
+.news-texts{
+    flex: 1 1 auto;
+    min-height: 6.8em;
+    line-height: 1.5;
 }
 
 .btn-event,
@@ -2670,6 +2724,11 @@ section,
     margin-top: auto;
     padding: 0 16px;
     text-align: center;
+}
+
+.btn-news{
+    align-self: flex-start;
+    margin-top: 20px;
 }
 
 .btn-event a{
@@ -3011,6 +3070,372 @@ body.search-open{
     .events-preview > img,
     .volunteering-list .volunteering-item .volunteering-image{
         min-height: 200px;
+    }
+}
+
+/* Final responsive stabilization layer. */
+html,
+body{
+    overflow-x: hidden;
+}
+
+main,
+.container-news,
+.membership-form-section,
+.donation-section,
+.gallery-section,
+.volunteering-images,
+.contact-section,
+.events-section{
+    padding-left: clamp(14px, 3vw, 32px);
+    padding-right: clamp(14px, 3vw, 32px);
+}
+
+.header-inner,
+.footer .box-container,
+.footer-bottom,
+.contact-section .section-contect,
+.membership-option,
+.donate-grid,
+.events-grid,
+.news-grid,
+.card-grid,
+.about-gallery,
+.gallery-grid{
+    width: 100%;
+}
+
+.hero-content,
+.donate-hero-content,
+.conservation-content,
+.volunteering-description,
+.about-copy,
+.intro .content,
+.events-copy{
+    max-width: min(100%, 900px);
+}
+
+.hero h1,
+.donate-hero-content h1,
+.membership-title,
+.news-title,
+.upcoming-event,
+.donation-title,
+.section-title,
+.contact-section .section-title{
+    overflow-wrap: anywhere;
+}
+
+.top-nav a,
+.dropbtn,
+.dropdown-menu a,
+.btn-join,
+.btn1,
+.btn2,
+.btn3,
+.btn-event,
+.btn-news,
+.events-load-more,
+.news-load-more,
+.membership-form-submit,
+.form-btn,
+.donate-btn,
+.membership-button,
+.membership-button1,
+.membership-button2,
+.payment-method-btn,
+.freq-btn,
+.social-btn,
+.header-tool-btn,
+.site-search-submit{
+    max-width: 100%;
+    white-space: normal;
+}
+
+.btn-event a{
+    text-align: center;
+    line-height: 1.25;
+}
+
+.payment-methods-options,
+.donation-frequency,
+.payment-demo-actions,
+.social-buttons,
+.hero-actions,
+.header-tools{
+    flex-wrap: wrap;
+}
+
+.membership-form-input,
+.form-input,
+.site-search-input,
+textarea,
+select{
+    width: 100%;
+    min-width: 0;
+}
+
+.events-card,
+.news-card,
+.membership-card,
+.donate-card,
+.card,
+.google-work-card,
+.membership-form-card,
+.membership-payment-card,
+.intro,
+.google-works-access,
+.events-preview,
+.about-copy,
+.contact-left,
+.contact-right,
+.volunteer-viewport,
+.donation-trust-bar,
+.donation-cta-band,
+.footer{
+    max-width: 100%;
+}
+
+@media (max-width: 1200px){
+    .top-nav{
+        justify-content: center;
+    }
+
+    .hero-content{
+        padding: 64px 28px 72px;
+    }
+
+    .gallery-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 992px){
+    .card-grid,
+    .about-gallery,
+    .membership-option,
+    .donate-grid,
+    .events-grid,
+    .events-grid--more,
+    .news-grid,
+    .news-grid--more,
+    .gallery-grid,
+    .footer .box-container{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding-left: 0;
+        padding-right: 0;
+        gap: 20px;
+    }
+
+    .events-preview,
+    .contact-section .section-contect,
+    .membership-form-row{
+        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+
+    .events-preview{
+        gap: 20px;
+    }
+
+    .events-preview > img,
+    .card img,
+    .events-card img,
+    .news-card img,
+    .about-gallery img,
+    .gallery-link img{
+        min-height: 240px;
+    }
+
+    .contact-section{
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .contact-section .section-contect{
+        padding-left: 0;
+        padding-right: 0;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 760px){
+    .site-header{
+        position: sticky;
+    }
+
+    .header-inner{
+        padding: 12px 14px;
+        gap: 10px;
+    }
+
+    .top-nav,
+    .js-enabled .top-nav{
+        width: 100%;
+        margin-top: 6px;
+    }
+
+    .top-nav a,
+    .dropbtn,
+    .top-nav .dropdown-menu a{
+        min-height: 44px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .hero{
+        min-height: 56vh;
+    }
+
+    .hero-content,
+    .donate-hero-content{
+        padding: 44px 18px 52px;
+        text-align: center;
+    }
+
+    .hero p,
+    .donate-hero-content p{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-actions{
+        justify-content: center;
+    }
+
+    section,
+    .events-section,
+    .container-news,
+    .membership-form-section,
+    .gallery-section,
+    .volunteering-images,
+    .contact-section,
+    .donation-section{
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
+    .card-grid,
+    .about-gallery,
+    .membership-option,
+    .donate-grid,
+    .events-grid,
+    .events-grid--more,
+    .news-grid,
+    .news-grid--more,
+    .gallery-grid,
+    .footer .box-container{
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .events-load-more-wrap,
+    .news-load-more-wrap{
+        margin: 18px 0 6px;
+    }
+
+    .btn3,
+    .events-load-more,
+    .news-load-more,
+    .membership-form-submit,
+    .site-search-submit{
+        min-width: 0;
+        width: 100%;
+    }
+
+    .payment-methods,
+    .donation-trust-bar,
+    .donation-quote{
+        max-width: 100%;
+    }
+
+    .footer{
+        padding-top: 28px;
+        padding-bottom: 20px;
+    }
+
+    .footer-bottom{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-bottom p{
+        text-align: left;
+    }
+
+    .container-news{
+        padding-bottom: 42px;
+    }
+}
+
+@media (max-width: 560px){
+    .brand-mark{
+        width: min(96px, 42vw);
+    }
+
+    .hero h1,
+    .donate-hero-content h1,
+    .membership-title,
+    .news-title,
+    .upcoming-event,
+    .donation-title,
+    .section-title,
+    .contact-section .section-title{
+        font-size: clamp(1.9rem, 8vw, 2.3rem);
+    }
+
+    .hero p,
+    .donate-hero-content p,
+    .news-subtitle,
+    .membership-description,
+    .events-p,
+    .donation-subtitle,
+    .contact-section .section-subtitle{
+        font-size: 1rem;
+    }
+
+    .events-preview > img,
+    .card img,
+    .events-card img,
+    .news-card img,
+    .about-gallery img,
+    .gallery-link img,
+    .volunteering-list .volunteering-item .volunteering-image{
+        min-height: 200px;
+    }
+
+    .intro,
+    .google-works-access,
+    .events-preview,
+    .membership-form-card,
+    .membership-payment-card,
+    .site-search-dialog,
+    .volunteer-viewport{
+        border-radius: 16px;
+    }
+
+    .intro,
+    .google-works-access,
+    .events-preview,
+    .membership-form-card,
+    .membership-payment-card,
+    .payment-demo-dialog,
+    .site-search-dialog{
+        padding: 18px;
+    }
+
+    .news-card h3,
+    .news-texts{
+        min-height: 0;
+    }
+
+    .events-card h3,
+    .events-text,
+    .events-text1{
+        min-height: 0;
     }
 }
 

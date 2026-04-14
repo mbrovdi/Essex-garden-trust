@@ -395,7 +395,7 @@ function setupDonationPayments() {
 
         pendingPayment = { amount, method, frequency };
         demoAmount.textContent = amount;
-        demoMethod.textContent = method === "stripe" ? "Card (Stripe)" : "PayPal";
+        demoMethod.textContent = method === "stripe" ? "Card" : "PayPal";
         demoFrequency.textContent = frequency === "monthly" ? "Monthly" : "One-time";
         demoModal.hidden = false;
     }
@@ -449,7 +449,7 @@ function setupDonationPayments() {
             // Demo success message so user can complete test flow.
             alert(
                 "Demo payment confirmed: £" + pendingPayment.amount +
-                " via " + (pendingPayment.method === "stripe" ? "Card (Stripe)" : "PayPal") +
+                " via " + (pendingPayment.method === "stripe" ? "Card" : "PayPal") +
                 " (" + (pendingPayment.frequency === "monthly" ? "Monthly" : "One-time") + ")"
             );
             closeDemoModal();
@@ -536,7 +536,7 @@ function setupMembershipPayments() {
     // Open modal with selected membership payment details.
     const openDemoModal = () => {
         if (!demoModal || !demoPlan || !demoAmount || !demoMethod) {
-            alert("Demo membership payment: £" + selectedAmount + " via " + (selectedMethod === "stripe" ? "Card (Stripe)" : "PayPal"));
+            alert("Demo membership payment: £" + selectedAmount + " via " + (selectedMethod === "stripe" ? "Card" : "PayPal"));
             return;
         }
 
@@ -548,7 +548,7 @@ function setupMembershipPayments() {
 
         demoPlan.textContent = selectedPlan;
         demoAmount.textContent = selectedAmount;
-        demoMethod.textContent = selectedMethod === "stripe" ? "Card (Stripe)" : "PayPal";
+        demoMethod.textContent = selectedMethod === "stripe" ? "Card" : "PayPal";
         demoModal.hidden = false;
     };
 
@@ -602,7 +602,7 @@ function setupMembershipPayments() {
             alert(
                 "Demo membership payment confirmed: " + pendingMembershipPayment.plan +
                 " (£" + pendingMembershipPayment.amount + ") via " +
-                (pendingMembershipPayment.method === "stripe" ? "Card (Stripe)" : "PayPal")
+                (pendingMembershipPayment.method === "stripe" ? "Card" : "PayPal")
             );
             closeDemoModal();
         });
