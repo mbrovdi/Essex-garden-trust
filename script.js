@@ -617,4 +617,395 @@ function setupMembershipPayments() {
 
 setupMembershipPayments();
 
+const themeStorageKey = "egt-theme";
+const siteSearchPages = [
+    {
+        title: "Home",
+        url: "index.html",
+        description: "Overview of Essex Garden Trust, featured places, and upcoming highlights.",
+        keywords: "home gardens trust essex featured places upcoming events"
+    },
+    {
+        title: "Conservation",
+        url: "conservation.html",
+        description: "Conservation casework, heritage landscapes, and protection priorities.",
+        keywords: "conservation heritage landscapes casework protection"
+    },
+    {
+        title: "What We Do",
+        url: "whatwedo.html",
+        description: "Core programmes, community work, and organisational priorities.",
+        keywords: "what we do programmes community priorities"
+    },
+    {
+        title: "Education",
+        url: "education.html",
+        description: "Learning programmes, talks, and opportunities for all ages.",
+        keywords: "education learning schools talks workshops"
+    },
+    {
+        title: "Research",
+        url: "research.html",
+        description: "Research projects, archives, and designed landscape history.",
+        keywords: "research archives history landscape"
+    },
+    {
+        title: "Events",
+        url: "events.html",
+        description: "Upcoming events, lectures, visits, and booking links.",
+        keywords: "events calendar lectures visits booking"
+    },
+    {
+        title: "News",
+        url: "news.html",
+        description: "Latest updates, announcements, and stories from the trust.",
+        keywords: "news stories updates announcements"
+    },
+    {
+        title: "Donate",
+        url: "donate.html",
+        description: "Support current work with one-off or recurring donations.",
+        keywords: "donate support funding recurring"
+    },
+    {
+        title: "Corporate Support",
+        url: "support.html",
+        description: "Partnerships, sponsorship, and corporate support options.",
+        keywords: "corporate support partnership sponsorship"
+    },
+    {
+        title: "Contact",
+        url: "contact.html",
+        description: "Contact details, form, and volunteering enquiries.",
+        keywords: "contact phone email volunteer"
+    },
+    {
+        title: "Volunteer",
+        url: "volunteer.html",
+        description: "Volunteer roles, stories, and ways to get involved.",
+        keywords: "volunteer roles get involved community"
+    },
+    {
+        title: "Membership",
+        url: "membership.html",
+        description: "Membership plans, benefits, and signup flow.",
+        keywords: "membership join benefits plans"
+    }
+];
+
+function safeLocalStorageGet(key) {
+    try {
+        return window.localStorage.getItem(key);
+    } catch {
+        return null;
+    }
+}
+
+function safeLocalStorageSet(key, value) {
+    try {
+        window.localStorage.setItem(key, value);
+    } catch {
+        // Ignore storage failures in private browsing or restricted contexts.
+    }
+}
+
+function applyTheme(theme) {
+    const normalizedTheme = theme === "dark" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", normalizedTheme);
+}
+
+function getPreferredTheme() {
+    const savedTheme = safeLocalStorageGet(themeStorageKey);
+
+    if (savedTheme === "light" || savedTheme === "dark") {
+        return savedTheme;
+    }
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function setupThemeToggle() {
+    applyTheme(getPreferredTheme());
+}
+
+function slugifyText(text) {
+    return text
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-");
+}
+
+function buildLocalSearchSections() {
+    const headingSelector = "main h1, main h2, main h3, section h1, section h2, section h3";
+    const headings = Array.from(document.querySelectorAll(headingSelector));
+    const seenIds = new Set();
+
+    return headings
+        .map((heading, index) => {
+            const rawTitle = heading.textContent ? heading.textContent.trim() : "";
+
+            if (!rawTitle) {
+                return null;
+            }
+
+            if (!heading.id) {
+                const fallbackId = slugifyText(rawTitle) || `section-${index + 1}`;
+                let uniqueId = fallbackId;
+                let suffix = 2;
+
+                while (document.getElementById(uniqueId) || seenIds.has(uniqueId)) {
+                    uniqueId = `${fallbackId}-${suffix}`;
+                    suffix += 1;
+                }
+
+                heading.id = uniqueId;
+            }
+
+            seenIds.add(heading.id);
+
+            return {
+                title: rawTitle,
+                url: `#${heading.id}`,
+                description: "Jump to this section on the current page.",
+                keywords: `${rawTitle.toLowerCase()} section current page`,
+                type: "Section"
+            };
+        })
+        .filter(Boolean);
+}
+
+function setupHeaderTools() {
+    const headerInner = document.querySelector(".header-inner");
+
+    if (!headerInner || headerInner.querySelector(".header-tools")) {
+        return;
+    }
+
+    const searchOverlay = document.createElement("div");
+    searchOverlay.className = "site-search-overlay";
+    searchOverlay.hidden = true;
+    searchOverlay.innerHTML =
+        '<div class="site-search-backdrop" data-search-close></div>' +
+        '<div class="site-search-dialog" role="dialog" aria-modal="true" aria-labelledby="siteSearchTitle">' +
+            '<div class="site-search-head">' +
+                '<div>' +
+                    '<p class="site-search-eyebrow">Quick Navigation</p>' +
+                    '<h2 id="siteSearchTitle">Search the website</h2>' +
+                '</div>' +
+                '<button type="button" class="site-search-close" aria-label="Close search" data-search-close>' +
+                    '<i class="fa fa-times" aria-hidden="true"></i>' +
+                '</button>' +
+            '</div>' +
+            '<form class="site-search-form">' +
+                '<label class="site-search-label" for="siteSearchInput">Find pages, sections, news, and events</label>' +
+                '<div class="site-search-input-row">' +
+                    '<input id="siteSearchInput" class="site-search-input" type="search" placeholder="Search the site" autocomplete="off">' +
+                    '<button type="submit" class="site-search-submit">Open</button>' +
+                '</div>' +
+            '</form>' +
+            '<div class="site-search-results" id="siteSearchResults"></div>' +
+        '</div>';
+
+    document.body.appendChild(searchOverlay);
+
+    const tools = document.createElement("div");
+    tools.className = "header-tools";
+    tools.innerHTML =
+        '<button type="button" class="header-tool-btn header-search-btn" aria-label="Search the website">' +
+            '<i class="fa fa-search" aria-hidden="true"></i>' +
+            '<span class="header-tool-btn-label">Search</span>' +
+        '</button>' +
+        '<button type="button" class="header-tool-btn header-theme-btn" aria-label="Switch colour mode">' +
+            '<i class="fa fa-adjust" aria-hidden="true"></i>' +
+            '<span class="header-tool-btn-label">Theme</span>' +
+        '</button>';
+
+    headerInner.appendChild(tools);
+
+    const searchButton = tools.querySelector(".header-search-btn");
+    const themeButton = tools.querySelector(".header-theme-btn");
+    const searchForm = searchOverlay.querySelector(".site-search-form");
+    const searchInput = searchOverlay.querySelector(".site-search-input");
+    const resultsContainer = searchOverlay.querySelector(".site-search-results");
+    const closeButtons = Array.from(searchOverlay.querySelectorAll("[data-search-close]"));
+
+    if (!searchButton || !themeButton || !searchForm || !searchInput || !resultsContainer) {
+        return;
+    }
+
+    const searchIndex = [
+        ...buildLocalSearchSections(),
+        ...siteSearchPages.map((page) => ({
+            ...page,
+            type: "Page"
+        }))
+    ];
+
+    const getCurrentTheme = () => {
+        return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+    };
+
+    const updateThemeButtonLabel = () => {
+        const currentTheme = getCurrentTheme();
+        const label = themeButton.querySelector(".header-tool-btn-label");
+
+        if (label) {
+            label.textContent = currentTheme === "dark" ? "Dark" : "Light";
+        }
+
+        themeButton.setAttribute(
+            "aria-label",
+            currentTheme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+        );
+    };
+
+    const renderResults = (query) => {
+        const normalizedQuery = query.trim().toLowerCase();
+        const rankedResults = searchIndex
+            .map((item) => {
+                const haystack = `${item.title} ${item.description} ${item.keywords || ""}`.toLowerCase();
+                let score = 0;
+
+                if (!normalizedQuery) {
+                    score = item.type === "Section" ? 2 : 1;
+                } else if (item.title.toLowerCase().startsWith(normalizedQuery)) {
+                    score = 5;
+                } else if (item.title.toLowerCase().includes(normalizedQuery)) {
+                    score = 4;
+                } else if (haystack.includes(normalizedQuery)) {
+                    score = 3;
+                }
+
+                return { ...item, score };
+            })
+            .filter((item) => item.score > 0)
+            .sort((left, right) => right.score - left.score || left.title.localeCompare(right.title))
+            .slice(0, 8);
+
+        if (rankedResults.length === 0) {
+            resultsContainer.innerHTML =
+                '<div class="site-search-empty">No matches yet. Try terms like events, membership, volunteer, or conservation.</div>';
+            return rankedResults;
+        }
+
+        resultsContainer.innerHTML = rankedResults
+            .map((result) => {
+                return (
+                    '<a class="site-search-result" href="' + result.url + '">' +
+                        '<span class="site-search-result-type">' + result.type + '</span>' +
+                        '<strong>' + result.title + '</strong>' +
+                        '<p>' + result.description + '</p>' +
+                    '</a>'
+                );
+            })
+            .join("");
+
+        return rankedResults;
+    };
+
+    const closeSearch = () => {
+        searchOverlay.hidden = true;
+        document.body.classList.remove("search-open");
+    };
+
+    const openSearch = () => {
+        searchOverlay.hidden = false;
+        document.body.classList.add("search-open");
+        renderResults(searchInput.value);
+
+        window.requestAnimationFrame(() => {
+            searchInput.focus();
+            searchInput.select();
+        });
+    };
+
+    searchButton.addEventListener("click", openSearch);
+
+    closeButtons.forEach((button) => {
+        button.addEventListener("click", closeSearch);
+    });
+
+    searchInput.addEventListener("input", () => {
+        renderResults(searchInput.value);
+    });
+
+    searchForm.addEventListener("submit", (event) => {
+        const results = renderResults(searchInput.value);
+
+        if (results.length === 0) {
+            event.preventDefault();
+            return;
+        }
+
+        event.preventDefault();
+        window.location.href = results[0].url;
+    });
+
+    searchOverlay.addEventListener("click", (event) => {
+        const resultLink = event.target.closest(".site-search-result");
+
+        if (resultLink) {
+            closeSearch();
+        }
+    });
+
+    themeButton.addEventListener("click", () => {
+        const nextTheme = getCurrentTheme() === "dark" ? "light" : "dark";
+        applyTheme(nextTheme);
+        safeLocalStorageSet(themeStorageKey, nextTheme);
+        updateThemeButtonLabel();
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+            event.preventDefault();
+            openSearch();
+            return;
+        }
+
+        if (event.key === "Escape" && !searchOverlay.hidden) {
+            closeSearch();
+        }
+    });
+
+    renderResults("");
+    updateThemeButtonLabel();
+}
+
+function setupSectionReveal() {
+    const revealItems = Array.from(document.querySelectorAll(
+        "main section, .events-card, .news-card, .membership-card, .donate-card, .google-work-card, .card"
+    ));
+
+    if (revealItems.length === 0 || !("IntersectionObserver" in window)) {
+        return;
+    }
+
+    revealItems.forEach((item) => {
+        item.classList.add("reveal-block");
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+                return;
+            }
+
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+        });
+    }, {
+        threshold: 0.14,
+        rootMargin: "0px 0px -40px 0px"
+    });
+
+    revealItems.forEach((item) => observer.observe(item));
+}
+
+setupThemeToggle();
+setupHeaderTools();
+setupSectionReveal();
+
 
