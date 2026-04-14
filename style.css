@@ -2318,6 +2318,18 @@ select{
     box-shadow: 0 10px 20px rgba(79, 159, 133, 0.22);
 }
 
+.btn3{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 240px;
+    min-height: 54px;
+    padding: 0 24px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
 .btn-join:hover{
     background: linear-gradient(135deg, #63b298, #4a9a80);
     box-shadow: 0 14px 24px rgba(79, 159, 133, 0.28);
