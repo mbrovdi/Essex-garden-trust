@@ -109,6 +109,69 @@ function setupMobileMenu() {
 
 setupMobileMenu(); // Initialize this page feature immediately.
 
+// Contact page: validate fields and open the visitor's email app with a prefilled message.
+function setupContactForm() {
+    const form = document.getElementById("contactForm");
+
+    if (!form) {
+        return;
+    }
+
+    const status = document.getElementById("contactFormStatus");
+    const recipientEmail = "enquiries@essexgardentrust.org.uk";
+
+    const showStatus = (message, tone) => {
+        if (!status) {
+            return;
+        }
+
+        status.textContent = message;
+        status.classList.remove("is-error", "is-success");
+
+        if (tone === "error") {
+            status.classList.add("is-error");
+        }
+
+        if (tone === "success") {
+            status.classList.add("is-success");
+        }
+    };
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const name = String(formData.get("name") || "").trim();
+        const email = String(formData.get("email") || "").trim();
+        const message = String(formData.get("message") || "").trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!name || !email || !message) {
+            showStatus("Please complete your name, email, and message before sending.", "error");
+            return;
+        }
+
+        if (!emailPattern.test(email)) {
+            showStatus("Please enter a valid email address.", "error");
+            return;
+        }
+
+        const subject = encodeURIComponent(`Website enquiry from ${name}`);
+        const body = encodeURIComponent(
+            `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+        );
+
+        showStatus(
+            "Your email app should open with the message ready to send. If it does not, email enquiries@essexgardentrust.org.uk directly.",
+            "success"
+        );
+
+        window.location.href = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
+    });
+}
+
+setupContactForm(); // Initialize this page feature immediately.
+
 // Volunteer slider:
 // - on desktop it shows two cards
 // - on mobile it shows one card and allows swipe

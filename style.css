@@ -743,6 +743,10 @@ section{
     flex-direction: column; /* Stack children vertically in this container */
     gap: 15px;
 }
+.contact-form textarea.form-input{
+    min-height: 150px;
+    resize: vertical;
+}
 .form-input{
     padding: 12px;
     border: 1px solid #ddd;
@@ -767,6 +771,22 @@ section{
 }
 .form-btn:hover{
     background-color: #145c4f;
+}
+
+.contact-form-status{
+    min-height: 24px;
+    margin: 4px 0 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #4f605c;
+}
+
+.contact-form-status.is-error{
+    color: #b23a3a;
+}
+
+.contact-form-status.is-success{
+    color: #106652;
 }
 
 /* Membership page pricing cards and signup form. */
@@ -1713,6 +1733,12 @@ img{
     font-size: 36px;
     margin: 0 0 20px;
     text-shadow: 2px 2px 6px black;
+}
+
+.conservation-content{
+    max-width: min(100%, 900px);
+    margin: 0 auto;
+    text-align: center;
 }
 
 .section-title{
@@ -3079,7 +3105,6 @@ body{
     overflow-x: hidden;
 }
 
-main,
 .container-news,
 .membership-form-section,
 .donation-section,
